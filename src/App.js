@@ -102,12 +102,18 @@ const App = () => {
 
     if (filters.id && filters.id.length > 0) {
       currentData = currentData.filter(item => filters.id.includes(item.id));
-      trackEvent({ category: 'filtering-id', action: filters.id });
+
+      filters.id.every(
+        id => trackEvent({ category: 'filtering-id', action: id})
+      )
     }
 
     if (filters.name && filters.name.length > 0) {
       currentData = currentData.filter(item => filters.name.includes(item.roleName));
-      trackEvent({ category: 'filtering-name', action: filters.name });
+
+      filters.name.every(
+        name => trackEvent({ category: 'filtering-name', action: name})
+      )
     }
 
     if (filters.permissions && filters.permissions.length > 0) {
