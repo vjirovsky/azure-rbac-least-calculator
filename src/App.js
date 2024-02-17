@@ -5,6 +5,8 @@ import { Select, Button } from 'antd';
 import { RedoOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
+import { useMatomo } from '@datapunt/matomo-tracker-react'
+
 import { Layout } from 'antd';
 
 import './App.css';
@@ -24,6 +26,15 @@ const App = () => {
   const [allIdOptions, setAllIdOptions] = useState([]);
   const [allNameOptions, setAllNameOptions] = useState([]);
   const [allPermissionsOptions, setAllPermissionsOptions] = useState([]);
+
+
+  const { trackPageView, trackEvent } = useMatomo()
+
+  // Track page view
+  React.useEffect(() => {
+    trackPageView()
+  }, [trackPageView])
+
 
 
   useEffect(() => {
@@ -83,6 +94,7 @@ const App = () => {
     }
 
     console.log('handleChange, filters 2: ' + JSON.stringify(filters) + ', dryRun: ' + dryRun);
+
     setFilters(filters);
 
     // Filter the data based on the new filters
@@ -90,10 +102,12 @@ const App = () => {
 
     if (filters.id && filters.id.length > 0) {
       currentData = currentData.filter(item => filters.id.includes(item.id));
+      trackEvent({ category: 'filtering-id', action: filters.id });
     }
 
     if (filters.name && filters.name.length > 0) {
       currentData = currentData.filter(item => filters.name.includes(item.roleName));
+      trackEvent({ category: 'filtering-name', action: filters.name });
     }
 
     if (filters.permissions && filters.permissions.length > 0) {
@@ -101,8 +115,13 @@ const App = () => {
       currentData = currentData.filter(
         item =>
           filters.permissions.every(
-            permission =>
-              filterPermissionsFunction(permission.trim(), item)
+            permission => filterPermissionsFunction(permission.trim(), item)
+          )
+      );
+      currentData = currentData.filter(
+        item =>
+          filters.permissions.every(
+            permission => trackEvent({ category: 'filtering-permission', action: permission.trim() })
           )
       );
     }
@@ -303,9 +322,9 @@ const App = () => {
                           .map((filterAction, index) =>
 
                             (isPermissionMatch(filterAction, roleAction)
-                             && (allPermissions[filterAction.trim().toLowerCase()] 
-                             && (allPermissions[filterAction.trim().toLowerCase()].isDataAction === isDataAction))) ? 
-                             `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
+                              && (allPermissions[filterAction.trim().toLowerCase()]
+                                && (allPermissions[filterAction.trim().toLowerCase()].isDataAction === isDataAction))) ?
+                              `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
                           )
                           .join(' ').trim();
 

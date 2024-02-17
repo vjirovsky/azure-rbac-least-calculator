@@ -8,7 +8,7 @@ import App from './App';
 import './index.css';
 
 const instance = createInstance({
-  urlBase: 'https://matomo.vjirovsky.cz/',
+  urlBase: 'https://matomo.vjirovsky.cz',
   siteId: 5,
   disabled: false, // optional, false by default. Makes all tracking calls no-ops if set to true.
   heartBeat: { // optional, enabled by default
