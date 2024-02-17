@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/azure-rbac-least-calculator/static/css/main.d88bb558.css",
+    "main.js": "/azure-rbac-least-calculator/static/js/main.0fd782a1.js",
+    "index.html": "/azure-rbac-least-calculator/index.html",
+    "main.d88bb558.css.map": "/azure-rbac-least-calculator/static/css/main.d88bb558.css.map",
+    "main.0fd782a1.js.map": "/azure-rbac-least-calculator/static/js/main.0fd782a1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d88bb558.css",
+    "static/js/main.0fd782a1.js"
+  ]
+}
