@@ -124,7 +124,7 @@ const App = () => {
             permission => filterPermissionsFunction(permission.trim(), item)
           )
       );
-      currentData = currentData.filter(
+       currentData.filter(
         item =>
           filters.permissions.every(
             permission => trackEvent({ category: 'filtering-permission', action: permission.trim() })
