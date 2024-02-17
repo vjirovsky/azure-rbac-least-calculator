@@ -93,7 +93,7 @@ const App = () => {
       filters.permissions = filters.permissions.map(permission => permission.trim());
     }
 
-    console.log('handleChange, filters 2: ' + JSON.stringify(filters) + ', dryRun: ' + dryRun);
+    //console.log('handleChange, filters 2: ' + JSON.stringify(filters) + ', dryRun: ' + dryRun);
 
     setFilters(filters);
 
@@ -136,7 +136,6 @@ const App = () => {
 
     // Update the URL with the new filter values
     if (dryRun !== true) {
-      console.log('changing URL');
       navigate({
         search: queryString.stringify({ ...filters }, { arrayFormat: 'bracket' }),
       });
@@ -145,7 +144,6 @@ const App = () => {
 
   useEffect(() => {
     // Fetch data from JSON file
-    console.log('calling parsing');
     // Parse the query string from the URL
     const parsed = queryString.parse(location.search, { arrayFormat: 'bracket' });
 
