@@ -76,6 +76,12 @@ const App = () => {
 
   const handleChange = (filters, dryRun = false) => {
     console.log('handleChange, filters: ' + JSON.stringify(filters) + ', dryRun: ' + dryRun);
+
+    if (filters.permissions) {
+      filters.permissions = filters.permissions.map(permission => permission.trim());
+    }
+
+    console.log('handleChange, filters 2: ' + JSON.stringify(filters) + ', dryRun: ' + dryRun);
     setFilters(filters);
 
     // Filter the data based on the new filters
@@ -95,7 +101,7 @@ const App = () => {
         item =>
           filters.permissions.every(
             permission =>
-              filterPermissionsFunction(permission, item)
+              filterPermissionsFunction(permission.trim(), item)
           )
       );
     }
@@ -170,7 +176,8 @@ const App = () => {
 
 
   const filterPermissionsFunction = (value, record) => {
-    var action = value;
+    var action = value.trim();
+
     var roleDefinition = record.permissions[0];
 
     var permission = allPermissions[action.toLowerCase()];
@@ -223,7 +230,7 @@ const App = () => {
       dataIndex: 'id',
       key: 'id',
       filterMultiple: true,
-      onFilter: (value, record) => record.roleName.toLowerCase().includes(value.toLowerCase()),
+      onFilter: (value, record) => record.roleName.toLowerCase().includes(value.trim().toLowerCase()),
     },
     {
       title: () => (
@@ -251,7 +258,7 @@ const App = () => {
       key: 'name',
       filterMultiple: true,
       //filteredValue: filters.name || null,
-      onFilter: (value, record) => record.roleName.toLowerCase().includes(value.toLowerCase()),
+      onFilter: (value, record) => record.roleName.toLowerCase().includes(value.trim().toLowerCase()),
     },
     {
       dataIndex: 'permissions',
@@ -267,7 +274,7 @@ const App = () => {
             value={filters.permissions}
           >
             {allPermissionsOptions.map((item) => (
-              <Option key={item}>{item}</Option>
+              <Option key={item.trim()}>{item}</Option>
             ))}
           </Select>
           <Button onClick={clearFilters} className='reset-filter-button' type='text' icon={<RedoOutlined />}>Reset filters</Button>
@@ -285,15 +292,19 @@ const App = () => {
                   <ul>
                     {permission.actions.map((roleAction, index) => {
                       var isDataAction = false;
-                      if (allPermissions[roleAction.toLowerCase()] !== undefined) {
-                        isDataAction = allPermissions[roleAction.toLowerCase()].isDataAction;
+                      var roleActionForEvaluation = roleAction.trim().toLowerCase();
+                      if (allPermissions[roleActionForEvaluation] !== undefined) {
+                        isDataAction = allPermissions[roleActionForEvaluation].isDataAction;
                       }
 
                       const permissionsText = filters.permissions && filters.permissions.length > 0 &&
                         filters.permissions
                           .map((filterAction, index) =>
 
-                            (isPermissionMatch(filterAction, roleAction) && (allPermissions[filterAction.toLowerCase()] && (allPermissions[filterAction.toLowerCase()].isDataAction === isDataAction))) ? `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
+                            (isPermissionMatch(filterAction, roleAction)
+                             && (allPermissions[filterAction.trim().toLowerCase()] 
+                             && (allPermissions[filterAction.trim().toLowerCase()].isDataAction === isDataAction))) ? 
+                             `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
                           )
                           .join(' ').trim();
 
