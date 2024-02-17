@@ -101,8 +101,10 @@ const App = () => {
     }
 
     setCurrentData(currentData);
+
     // Update the URL with the new filter values
     if (dryRun !== true) {
+      console.log('changing URL');
       navigate({
         search: queryString.stringify({ ...filters }, { arrayFormat: 'bracket' }),
       });
@@ -118,8 +120,10 @@ const App = () => {
     // Set the initial data and filter values
     handleChange(parsed, true);
 
-  }, [location.search, allData,allPermissions]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location.search, allData, allPermissions, allIdOptions, allNameOptions, allPermissionsOptions]);
   //, allData, allPermissions, allIdOptions, allNameOptions, allPermissionsOptions, handleChange]);
+
 
 
   const handleFilterIdChange = (value) => {
@@ -228,7 +232,7 @@ const App = () => {
           <Select
             mode="multiple"
             showSearch
-            style={{ width: '30vw', 'max-width': '400px' }}
+            style={{ width: '30vw', maxWidth: '400px' }}
             placeholder="Select role name"
             optionFilterProp="children"
             onChange={handleFilterNameChange}
@@ -289,14 +293,14 @@ const App = () => {
                         filters.permissions
                           .map((filterAction, index) =>
 
-                            (isPermissionMatch(filterAction, roleAction) && (allPermissions[filterAction.toLowerCase()] && (allPermissions[filterAction.toLowerCase()].isDataAction == isDataAction))) ? `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
+                            (isPermissionMatch(filterAction, roleAction) && (allPermissions[filterAction.toLowerCase()] && (allPermissions[filterAction.toLowerCase()].isDataAction === isDataAction))) ? `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
                           )
                           .join(' ').trim();
 
                       return (
-                        <li key={permissionIndex + 'action' + index} style={permissionsText && permissionsText != '' ? { fontWeight: 'bold' } : {}}>
+                        <li key={permissionIndex + 'action' + index} style={permissionsText && permissionsText !== '' ? { fontWeight: 'bold' } : {}}>
                           {roleAction}
-                          <span dangerouslySetInnerHTML={{ __html: (permissionsText && permissionsText != '') ? '&nbsp;&nbsp;' + permissionsText : '' }}></span>
+                          <span dangerouslySetInnerHTML={{ __html: (permissionsText && permissionsText !== '') ? '&nbsp;&nbsp;' + permissionsText : '' }}></span>
                           {index < permission.actions.length - 1 && <br />}
                         </li>
                       );
@@ -333,9 +337,9 @@ const App = () => {
                             .join(' ').trim();
 
                         return (
-                          <li key={permissionIndex + 'dataAction' + index} style={permissionsText && permissionsText != '' ? { fontWeight: 'bold' } : {}}>
+                          <li key={permissionIndex + 'dataAction' + index} style={permissionsText && permissionsText !== '' ? { fontWeight: 'bold' } : {}}>
                             {roleAction}
-                            <span dangerouslySetInnerHTML={{ __html: (permissionsText && permissionsText != '') ? '&nbsp;&nbsp;' + permissionsText : '' }}></span>
+                            <span dangerouslySetInnerHTML={{ __html: (permissionsText && permissionsText !== '') ? '&nbsp;&nbsp;' + permissionsText : '' }}></span>
                             {index < permission.dataActions.length - 1 && <br />}
                           </li>
                         );
@@ -373,19 +377,19 @@ const App = () => {
       <Content>
         <div className='tool-description'>
           <p>
-            This tools helps to find a built-in role in Azure that provides the least privilege for a specific set of actions. It is based on the <a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" target="_blank">built-in roles</a> and <a href="https://docs.microsoft.com/en-us/rest/api/" target='_blank'>Azure REST API</a> documentation.
+            This tools helps to find a built-in role in Azure that provides the least privilege for a specific set of actions. It is based on the <a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" target="_blank" rel="noreferrer">built-in roles</a> and <a href="https://docs.microsoft.com/en-us/rest/api/" target='_blank' rel="noreferrer">Azure REST API</a> documentation.
           </p>
           <p>
             Just provide the desired permissions and the tool will show you the roles that provide the least privilege for the given set of actions, with explanation which permission (in filter) matches coresponding allowed permission in role definition.
           </p>
           <p>
-            Please take in mind, some permissions are not directly mapped to the built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" target="_blank">create a new Custom role</a>.
+            Please take in mind, some permissions are not directly mapped to the built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" target="_blank" rel="noreferrer">create a new Custom role</a>.
           </p>
 
 
 
         </div>
-        <Table key='datagrid' columns={columns} dataSource={currentData} onChange={handleChange} pagination={false} rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' :  'table-row-dark'} />
+        <Table key='datagrid' columns={columns} dataSource={currentData} onChange={handleChange} pagination={false} rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' : 'table-row-dark'} />
       </Content>
       <Footer>
         <p>
