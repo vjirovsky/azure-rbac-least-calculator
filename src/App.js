@@ -25,6 +25,7 @@ const App = () => {
   const [allNameOptions, setAllNameOptions] = useState([]);
   const [allPermissionsOptions, setAllPermissionsOptions] = useState([]);
 
+
   useEffect(() => {
 
     fetch('/azure-rbac-least-calculator/roles.json')
