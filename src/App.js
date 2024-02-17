@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, } from 'antd';
 import { Select, Button } from 'antd';
+import { RedoOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { Layout } from 'antd';
@@ -26,7 +27,7 @@ const App = () => {
 
   useEffect(() => {
 
-    fetch('./roles.json')
+    fetch('/azure-rbac-least-calculator/roles.json')
       .then(response => response.json())
       .then(fetchData => {
 
@@ -39,7 +40,7 @@ const App = () => {
 
       });
 
-    fetch('./permissions.json')
+    fetch('/azure-rbac-least-calculator/permissions.json')
       .then(response => response.json())
       .then(fetchData => {
         const dataObject = fetchData.reduce((obj, provider) => {
@@ -117,7 +118,7 @@ const App = () => {
     // Set the initial data and filter values
     handleChange(parsed, true);
 
-  }, [location.search]);
+  }, [location.search, allData,allPermissions]);
   //, allData, allPermissions, allIdOptions, allNameOptions, allPermissionsOptions, handleChange]);
 
 
@@ -200,7 +201,7 @@ const App = () => {
           <Select
             mode="multiple"
             showSearch
-            style={{ width: '20vw', 'max-width': '200px' }}
+            style={{ width: '20vw', maxWidth: '200px' }}
             placeholder="Select role ID"
             optionFilterProp="children"
             onChange={handleFilterIdChange}
@@ -265,7 +266,7 @@ const App = () => {
               <Option key={item}>{item}</Option>
             ))}
           </Select>
-          <Button onClick={clearFilters} className='reset-filter-button' type="primary">Reset filters</Button>
+          <Button onClick={clearFilters} className='reset-filter-button' type='text' icon={<RedoOutlined />}>Reset filters</Button>
         </div>
       ),
       onFilter: filterPermissionsFunction,
@@ -384,7 +385,7 @@ const App = () => {
 
 
         </div>
-        <Table key='datagrid' columns={columns} dataSource={currentData} onChange={handleChange} pagination={false} />
+        <Table key='datagrid' columns={columns} dataSource={currentData} onChange={handleChange} pagination={false} rowClassName={(record, index) => index % 2 === 0 ? 'table-row-light' :  'table-row-dark'} />
       </Content>
       <Footer>
         <p>

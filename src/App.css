@@ -18,7 +18,7 @@
 }
 
 .ant-layout-header{
-  background-color: #2f74ff;
+  background-color: #007FFF;
   min-height: 50px;
   display: flex;
   flex-direction: column;
@@ -80,4 +80,15 @@
 
 .ant-table-thead{
   max-width: 100vw;
+}
+
+tr.table-row-light{
+  background-color: rgb(255, 255, 255);
+}
+
+tr.table-row-dark{
+  background-color: #ebf0f8;
+}
+tr:hover td{
+  background: rgb(252, 255, 204)!important;
 }
