@@ -1,10 +1,12 @@
+
 import React, { useState, useEffect } from 'react';
-import { Table, Input, Button } from 'antd';
-import { Select, Divider, Checkbox } from 'antd';
+import { Table, } from 'antd';
+import { Select, Button } from 'antd';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { Layout } from 'antd';
-import { AutoComplete } from 'antd';
+
+import './App.css';
 
 const { Header, Footer, Content } = Layout;
 
@@ -15,13 +17,15 @@ const App = () => {
   const [allPermissions, setAllPermissions] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [filters, setFilters] = useState({});
-  const [pagination, setPagination] = useState({ current: 1, pageSize: 10 });
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [allIdOptions, setAllIdOptions] = useState([]);
   const [allNameOptions, setAllNameOptions] = useState([]);
+  const [allPermissionsOptions, setAllPermissionsOptions] = useState([]);
 
   useEffect(() => {
+
     fetch('./roles.json')
       .then(response => response.json())
       .then(fetchData => {
@@ -30,6 +34,7 @@ const App = () => {
         setAllData(fetchData);
         setCurrentData(fetchData);
 
+        setAllIdOptions(fetchData.map(item => item.id).sort());
         setAllNameOptions(fetchData.map(item => item.roleName).sort());
 
       });
@@ -40,7 +45,7 @@ const App = () => {
         const dataObject = fetchData.reduce((obj, provider) => {
 
           obj = provider.operations.reduce((obj, operation) => {
-            obj[operation.name.toLowerCase()] = operation;
+            obj[operation.name.trim().toLowerCase()] = operation;
             return obj;
           }, obj);
 
@@ -48,7 +53,7 @@ const App = () => {
             obj = provider.resourceTypes.reduce((obj, providerResourceType) => {
               if (providerResourceType.operations.length > 0) {
                 obj = providerResourceType.operations.reduce((obj, operation) => {
-                  obj[operation.name.toLowerCase()] = operation;
+                  obj[operation.name.trim().toLowerCase()] = operation;
                   return obj;
                 }, obj);
               }
@@ -61,29 +66,24 @@ const App = () => {
 
 
         setAllPermissions(dataObject);
+        setAllPermissionsOptions(Object.values(dataObject).map(item => item.name).sort());
+
 
       });
   }, []);
 
 
-  useEffect(() => {
-    // Fetch data from JSON file
-
-    // Parse the query string from the URL
-    const parsed = queryString.parse(location.search, { arrayFormat: 'bracket' });
-
-    // Set the initial data and filter values
-    handleChange(pagination, parsed);
-
-  }, [location.search, allData, allPermissions]);
-
-
-  const handleChange = (pagination, filters) => {
+  const handleChange = (filters, dryRun = false) => {
+    console.log('handleChange, filters: ' + JSON.stringify(filters) + ', dryRun: ' + dryRun);
     setFilters(filters);
-    setPagination(pagination);
 
     // Filter the data based on the new filters
     let currentData = allData;
+
+    if (filters.id && filters.id.length > 0) {
+      currentData = currentData.filter(item => filters.id.includes(item.id));
+    }
+
     if (filters.name && filters.name.length > 0) {
       currentData = currentData.filter(item => filters.name.includes(item.roleName));
     }
@@ -101,27 +101,48 @@ const App = () => {
 
     setCurrentData(currentData);
     // Update the URL with the new filter values
-    navigate({
-      search: queryString.stringify(filters, { arrayFormat: 'bracket' }),
-    });
+    if (dryRun !== true) {
+      navigate({
+        search: queryString.stringify({ ...filters }, { arrayFormat: 'bracket' }),
+      });
+    }
+  };
+
+  useEffect(() => {
+    // Fetch data from JSON file
+    console.log('calling parsing');
+    // Parse the query string from the URL
+    const parsed = queryString.parse(location.search, { arrayFormat: 'bracket' });
+
+    // Set the initial data and filter values
+    handleChange(parsed, true);
+
+  }, [location.search]);
+  //, allData, allPermissions, allIdOptions, allNameOptions, allPermissionsOptions, handleChange]);
+
+
+  const handleFilterIdChange = (value) => {
+    const newFilters = { ...filters, id: value };
+    handleChange(newFilters, false);
   };
 
   const handleFilterNameChange = (value) => {
     const newFilters = { ...filters, name: value };
-    handleChange(pagination, newFilters);
+    handleChange(newFilters, false);
   };
 
   const handleFilterActionChange = (value) => {
     const newFilters = { ...filters, permissions: value };
-    handleChange(pagination, newFilters);
+    handleChange(newFilters, false);
   };
 
+  const clearFilters = () => {
+    setFilters({});
 
-
-  const filterFunction = (value, record) => {
-    // Implement your business logic here
-    // For now, it just checks if the record's name includes the filter value
-    return record.id.includes(value);
+    // Delete the filters from the URL
+    navigate({
+      search: '',
+    });
   };
 
 
@@ -132,9 +153,14 @@ const App = () => {
   };
 
 
-  const isPermissionMatch = (action, roleDefinitionActions) => {
+  const isPermissionMatchForRoleSet = (action, roleDefinitionActions) => {
     // Check if the action is explicitly allowed
     return roleDefinitionActions.some(pattern => matches(action, pattern));
+  }
+
+  const isPermissionMatch = (action, allowedAction) => {
+    // Check if the action is explicitly allowed
+    return matches(action, allowedAction);
   }
 
 
@@ -142,24 +168,23 @@ const App = () => {
     var action = value;
     var roleDefinition = record.permissions[0];
 
-    console.log('myaction' + action.toLowerCase(), allPermissions, allPermissions[action.toLowerCase()]);
     var permission = allPermissions[action.toLowerCase()];
     if (permission !== undefined) {
-      
+
       if (permission.isDataAction) {
-        return (isPermissionMatch(action, roleDefinition.dataActions))
+        return (isPermissionMatchForRoleSet(action, roleDefinition.dataActions))
           &&
-          !(isPermissionMatch(action, roleDefinition.notDataActions));
+          !(isPermissionMatchForRoleSet(action, roleDefinition.notDataActions));
       }
       else {
-        return (isPermissionMatch(action, roleDefinition.actions))
+        return (isPermissionMatchForRoleSet(action, roleDefinition.actions))
           &&
-          !(isPermissionMatch(action, roleDefinition.notActions));
+          !(isPermissionMatchForRoleSet(action, roleDefinition.notActions));
 
       }
 
     }
-    throw new Error('action doesn\'t exist' + action.toLowerCase());
+    //console.error('action doesn\'t exist ' + action.toLowerCase());
     // The action is allowed if it is allowed or a data operation is allowed,
     // and it is not disallowed and a data operation is not disallowed
 
@@ -169,54 +194,41 @@ const App = () => {
 
   const columns = [
     {
-      title: 'Role ID',
-      dataIndex: 'id',
-      key: 'id',
-      filters: Array.from(new Set(currentData.map(item => item.id))).map(id => ({ text: id, value: id })),
-      //filteredValue: filters.id || null,
-      filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-        <div style={{ padding: 8 }}>
-          <Input
-            placeholder="Search Name"
-            value={selectedKeys[0]}
-            onChange={e => setSelectedKeys(e.target.value ? [e.target.value] : [])}
-            onPressEnter={() => confirm()}
-            style={{ marginBottom: 8, display: 'block' }}
-          />
-          <Button
-            type="primary"
-            onClick={() => confirm()}
-            size="small"
-            style={{ width: 90, marginRight: 8 }}
+      title: () => (
+        <div>
+          Role ID<br />
+          <Select
+            mode="multiple"
+            showSearch
+            style={{ width: '20vw', 'max-width': '200px' }}
+            placeholder="Select role ID"
+            optionFilterProp="children"
+            onChange={handleFilterIdChange}
+            value={filters.id}
+            filterOption={(input, option) =>
+              option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+            }
           >
-            Search
-          </Button>
-          <Button
-            onClick={() => {
-              clearFilters();
-              navigate({
-                search: "",
-              });
-              confirm();
-            }}
-            size="small"
-            style={{ width: 90 }}
-          >
-            Reset
-          </Button>
+            {allIdOptions.map(item => (
+              <Option key={item}>{item}</Option>
+            ))}
+          </Select>
         </div>
       ),
-      onFilter: filterFunction,
+      dataIndex: 'id',
+      key: 'id',
+      filterMultiple: true,
+      onFilter: (value, record) => record.roleName.toLowerCase().includes(value.toLowerCase()),
     },
     {
       title: () => (
         <div>
-          Name
+          Name<br />
           <Select
             mode="multiple"
             showSearch
-            style={{ width: 200 }}
-            placeholder="Select names"
+            style={{ width: '30vw', 'max-width': '400px' }}
+            placeholder="Select role name"
             optionFilterProp="children"
             onChange={handleFilterNameChange}
             value={filters.name}
@@ -232,7 +244,6 @@ const App = () => {
       ),
       dataIndex: 'roleName',
       key: 'name',
-      //filters: Array.from(new Set(data.map(item => item.roleName))).map(roleName => ({ text: roleName, value: roleName })),
       filterMultiple: true,
       //filteredValue: filters.name || null,
       onFilter: (value, record) => record.roleName.toLowerCase().includes(value.toLowerCase()),
@@ -242,73 +253,109 @@ const App = () => {
       key: 'permissions',
       title: () => (
         <div>
-          Permissions
+          Desired permissions<br />
           <Select
             mode="tags"
-            style={{ width: 200 }}
-            placeholder="Provide desired actions"
+            style={{ width: '50vw' }}
+            placeholder="Provide desired permissions"
             onChange={handleFilterActionChange}
             value={filters.permissions}
           >
+            {allPermissionsOptions.map((item) => (
+              <Option key={item}>{item}</Option>
+            ))}
           </Select>
+          <Button onClick={clearFilters} className='reset-filter-button' type="primary">Reset filters</Button>
         </div>
       ),
       onFilter: filterPermissionsFunction,
       filterMultiple: true,
       render: permissions => (
         <div>
-          {permissions.map((permission, index) => (
-            <div key={index}>
-              <div>Actions:
-                <ul>
-                  {permission.actions.map((action, index) => (
-                    <li>
-                      <React.Fragment key={index}>
-                        {action}
-                        {index < permission.actions.length - 1 && <br />}
-                      </React.Fragment>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>Not Actions:
-                <ul>
-                  {permission.notActions.map((action, index) => (
-                    <li>
-                      <React.Fragment key={index}>
-                        {action}
-                        {index < permission.actions.length - 1 && <br />}
-                      </React.Fragment>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+          {permissions.map((permission, permissionIndex) => (
+            <div key={'permission-item' - permissionIndex}>
+              <div className="permissions-columns">
+                <div className='permissions-column-left'>
+                  <strong>Included control actions:</strong>
+                  <ul>
+                    {permission.actions.map((roleAction, index) => {
+                      var isDataAction = false;
+                      if (allPermissions[roleAction.toLowerCase()] !== undefined) {
+                        isDataAction = allPermissions[roleAction.toLowerCase()].isDataAction;
+                      }
 
-              <div>
-                Data Actions:
-                <ul>
-                  {permission.dataActions.map((action, index) => (
-                    <li>
-                      <React.Fragment key={index}>
-                        {action}
-                        {index < permission.actions.length - 1 && <br />}
-                      </React.Fragment>
-                    </li>
-                  ))}
-                </ul>
+                      const permissionsText = filters.permissions && filters.permissions.length > 0 &&
+                        filters.permissions
+                          .map((filterAction, index) =>
+
+                            (isPermissionMatch(filterAction, roleAction) && (allPermissions[filterAction.toLowerCase()] && (allPermissions[filterAction.toLowerCase()].isDataAction == isDataAction))) ? `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
+                          )
+                          .join(' ').trim();
+
+                      return (
+                        <li key={permissionIndex + 'action' + index} style={permissionsText && permissionsText != '' ? { fontWeight: 'bold' } : {}}>
+                          {roleAction}
+                          <span dangerouslySetInnerHTML={{ __html: (permissionsText && permissionsText != '') ? '&nbsp;&nbsp;' + permissionsText : '' }}></span>
+                          {index < permission.actions.length - 1 && <br />}
+                        </li>
+                      );
+                    })}
+                    {permission.actions.length === 0 ? <i>(empty)</i> : null}
+                  </ul>
+                </div>
+                <div className='permissions-column-right'>
+                  <strong>Excluded control actions:</strong>
+                  <ul>
+                    {permission.notActions.map((action, index) => (
+                      <li key={permissionIndex + 'notAction' + index}>
+                        <React.Fragment key={permissionIndex - 'notaction-fragmment-' + index}>
+                          {action}
+                          {index < permission.notActions.length - 1 && <br />}
+                        </React.Fragment>
+                      </li>
+                    ))}
+                    {permission.notActions.length === 0 ? <i>(empty)</i> : null}
+                  </ul>
+                </div>
               </div>
-              <div>
-                Not Data Actions:
-                <ul>
-                  {permission.notDataActions.map((action, index) => (
-                    <li>
-                      <React.Fragment key={index}>
-                        {action}
-                        {index < permission.actions.length - 1 && <br />}
-                      </React.Fragment>
-                    </li>
-                  ))}
-                </ul>
+              <div className="permissions-columns">
+                <div className='permissions-column-left'>
+                  <strong>Included data actions:</strong>
+                  <ul>
+                    {
+                      permission.dataActions.map((roleAction, index) => {
+                        const permissionsText = filters.permissions && filters.permissions.length > 0 &&
+                          filters.permissions
+                            .map((filterAction, index) =>
+                              isPermissionMatch(filterAction, roleAction) ? `<sup title='Matches permission "${filterAction}"'>[${index + 1}]</sup>` : ''
+                            )
+                            .join(' ').trim();
+
+                        return (
+                          <li key={permissionIndex + 'dataAction' + index} style={permissionsText && permissionsText != '' ? { fontWeight: 'bold' } : {}}>
+                            {roleAction}
+                            <span dangerouslySetInnerHTML={{ __html: (permissionsText && permissionsText != '') ? '&nbsp;&nbsp;' + permissionsText : '' }}></span>
+                            {index < permission.dataActions.length - 1 && <br />}
+                          </li>
+                        );
+                      })}
+                    {permission.dataActions.length === 0 ? <i>(empty)</i> : null}
+                  </ul>
+                </div>
+                <div className='permissions-column-right'>
+                  <strong>Excluded data actions:</strong>
+                  <ul>
+                    {permission.notDataActions.map((action, index) => (
+                      <li key={permissionIndex + 'notDataAction' + index}>
+                        <React.Fragment key={permissionIndex - 'notDataAction-fragmment-' + index}>
+                          {action}
+                          {index < permission.notDataActions.length - 1 && <br />}
+                        </React.Fragment>
+                      </li>
+                    ))}
+                    {permission.notDataActions.length === 0 ? <i>(empty)</i> : null}
+                  </ul>
+                </div>
               </div>
             </div>
           ))}
@@ -320,14 +367,32 @@ const App = () => {
   return (
     <Layout>
       <Header>
-        <h1>Az Least Privilege Calculator </h1>
+        <h1>Azure RBAC Least Privilege Calculator </h1>
       </Header>
       <Content>
-        <Table columns={columns} dataSource={currentData} onChange={handleChange}
-          pagination={{ pageSize: 50 }} />
+        <div className='tool-description'>
+          <p>
+            This tools helps to find a built-in role in Azure that provides the least privilege for a specific set of actions. It is based on the <a href="https://docs.microsoft.com/en-us/azure/role-based-access-control/built-in-roles" target="_blank">built-in roles</a> and <a href="https://docs.microsoft.com/en-us/rest/api/" target='_blank'>Azure REST API</a> documentation.
+          </p>
+          <p>
+            Just provide the desired permissions and the tool will show you the roles that provide the least privilege for the given set of actions, with explanation which permission (in filter) matches coresponding allowed permission in role definition.
+          </p>
+          <p>
+            Please take in mind, some permissions are not directly mapped to the built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" target="_blank">create a new Custom role</a>.
+          </p>
+
+
+
+        </div>
+        <Table key='datagrid' columns={columns} dataSource={currentData} onChange={handleChange} pagination={false} />
       </Content>
       <Footer>
-        {/* Add your footer content here */}
+        <p>
+          &copy; 2024 <a href="https://www.vjirovsky.cz">Vaclav Jirovsky</a> | <a href="https://blog.vjirovsky.cz">Blog</a>  | <a href="https://github.com/vjirovsky/azure-rbac-least-calculator">GitHub project of the tool</a> | <a href="https://github.com/vjirovsky/azure-rbac-least-calculator/issues">Report an issue</a>
+        </p>
+        <p>
+          Please note that this is a personal project, it is provided 'as is' with no warranties and confer no rights and is not affiliated with Microsoft Corporation.
+        </p>
       </Footer>
     </Layout>
   );

@@ -2,6 +2,9 @@
 .App {
   text-align: center;
 }
+.tool-description{
+  padding: 10px 20px;
+}
 
 .App-logo {
   height: 40vmin;
@@ -14,14 +17,14 @@
   }
 }
 
-.App-header {
-  background-color: #9ba3b3;
-  min-height: 100vh;
+.ant-layout-header{
+  background-color: #2f74ff;
+  min-height: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 1.4em;
   color: white;
 }
 
@@ -36,4 +39,45 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.permissions-columns{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.permissions-column-left{
+  width: 50%;
+  order: 1;
+  color: green;
+  strong{
+    color: black;
+  }
+
+  ul{
+    list-style-type: square;
+    text-wrap:  wrap;
+  }
+}
+.permissions-column-right{
+  order: 2;
+  width: 50%;
+  color: red;
+  strong{
+    color: black;
+  }
+  ul{
+    list-style-type: square;
+    text-wrap:  wrap;
+  }
+}
+
+.reset-filter-button{
+  margin-left: 20px;
+}
+
+.ant-table-thead{
+  max-width: 100vw;
 }
