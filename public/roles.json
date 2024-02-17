@@ -8116,6 +8116,50 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "6aac74c4-6311-40d2-bbdd-7d01e7c6e3a9",
+    "permissions": [
+      {
+        "actions": [
+          "microsoft.scvmm/vmmservers/Read",
+          "microsoft.scvmm/vmmservers/Write",
+          "microsoft.scvmm/vmmservers/Delete",
+          "Microsoft.Insights/AlertRules/Write",
+          "Microsoft.Insights/AlertRules/Delete",
+          "Microsoft.Insights/AlertRules/Read",
+          "Microsoft.Insights/AlertRules/Activated/Action",
+          "Microsoft.Insights/AlertRules/Resolved/Action",
+          "Microsoft.Insights/AlertRules/Throttled/Action",
+          "Microsoft.Insights/AlertRules/Incidents/Read",
+          "Microsoft.Resources/deployments/read",
+          "Microsoft.Resources/deployments/write",
+          "Microsoft.Resources/deployments/delete",
+          "Microsoft.Resources/deployments/cancel/action",
+          "Microsoft.Resources/deployments/validate/action",
+          "Microsoft.Resources/deployments/whatIf/action",
+          "Microsoft.Resources/deployments/exportTemplate/action",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/deployments/operationstatuses/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/write",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.ExtendedLocation/customLocations/Read",
+          "Microsoft.ExtendedLocation/customLocations/deploy/action"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Arc ScVmm Private Clouds Onboarding",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "e582369a-e17b-42a5-b10c-874c387c530b",
     "permissions": [
       {
@@ -8185,6 +8229,54 @@
       }
     ],
     "roleName": "Azure Arc ScVmm VM Contributor",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "c0781e91-8102-4553-8951-97c6d4243cda",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Insights/AlertRules/Write",
+          "Microsoft.Insights/AlertRules/Delete",
+          "Microsoft.Insights/AlertRules/Read",
+          "Microsoft.Insights/AlertRules/Activated/Action",
+          "Microsoft.Insights/AlertRules/Resolved/Action",
+          "Microsoft.Insights/AlertRules/Throttled/Action",
+          "Microsoft.Insights/AlertRules/Incidents/Read",
+          "Microsoft.Resources/deployments/read",
+          "Microsoft.Resources/deployments/write",
+          "Microsoft.Resources/deployments/delete",
+          "Microsoft.Resources/deployments/cancel/action",
+          "Microsoft.Resources/deployments/validate/action",
+          "Microsoft.Resources/deployments/whatIf/action",
+          "Microsoft.Resources/deployments/exportTemplate/action",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/deployments/operationstatuses/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/write",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "microsoft.scvmm/virtualnetworks/join/action",
+          "microsoft.scvmm/virtualnetworks/Read",
+          "microsoft.scvmm/virtualmachinetemplates/clone/action",
+          "microsoft.scvmm/virtualmachinetemplates/Read",
+          "microsoft.scvmm/clouds/deploy/action",
+          "microsoft.scvmm/clouds/Read",
+          "Microsoft.ExtendedLocation/customLocations/Read",
+          "Microsoft.ExtendedLocation/customLocations/deploy/action",
+          "Microsoft.ExtendedLocation/customLocations/enabledresourcetypes/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Arc ScVmm Private Cloud User",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -8259,136 +8351,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "6aac74c4-6311-40d2-bbdd-7d01e7c6e3a9",
-    "permissions": [
-      {
-        "actions": [
-          "microsoft.scvmm/vmmservers/Read",
-          "microsoft.scvmm/vmmservers/Write",
-          "microsoft.scvmm/vmmservers/Delete",
-          "Microsoft.Insights/AlertRules/Write",
-          "Microsoft.Insights/AlertRules/Delete",
-          "Microsoft.Insights/AlertRules/Read",
-          "Microsoft.Insights/AlertRules/Activated/Action",
-          "Microsoft.Insights/AlertRules/Resolved/Action",
-          "Microsoft.Insights/AlertRules/Throttled/Action",
-          "Microsoft.Insights/AlertRules/Incidents/Read",
-          "Microsoft.Resources/deployments/read",
-          "Microsoft.Resources/deployments/write",
-          "Microsoft.Resources/deployments/delete",
-          "Microsoft.Resources/deployments/cancel/action",
-          "Microsoft.Resources/deployments/validate/action",
-          "Microsoft.Resources/deployments/whatIf/action",
-          "Microsoft.Resources/deployments/exportTemplate/action",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/deployments/operationstatuses/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/write",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.ExtendedLocation/customLocations/Read",
-          "Microsoft.ExtendedLocation/customLocations/deploy/action"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Arc ScVmm Private Clouds Onboarding",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "c0781e91-8102-4553-8951-97c6d4243cda",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Insights/AlertRules/Write",
-          "Microsoft.Insights/AlertRules/Delete",
-          "Microsoft.Insights/AlertRules/Read",
-          "Microsoft.Insights/AlertRules/Activated/Action",
-          "Microsoft.Insights/AlertRules/Resolved/Action",
-          "Microsoft.Insights/AlertRules/Throttled/Action",
-          "Microsoft.Insights/AlertRules/Incidents/Read",
-          "Microsoft.Resources/deployments/read",
-          "Microsoft.Resources/deployments/write",
-          "Microsoft.Resources/deployments/delete",
-          "Microsoft.Resources/deployments/cancel/action",
-          "Microsoft.Resources/deployments/validate/action",
-          "Microsoft.Resources/deployments/whatIf/action",
-          "Microsoft.Resources/deployments/exportTemplate/action",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/deployments/operationstatuses/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/write",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "microsoft.scvmm/virtualnetworks/join/action",
-          "microsoft.scvmm/virtualnetworks/Read",
-          "microsoft.scvmm/virtualmachinetemplates/clone/action",
-          "microsoft.scvmm/virtualmachinetemplates/Read",
-          "microsoft.scvmm/clouds/deploy/action",
-          "microsoft.scvmm/clouds/Read",
-          "Microsoft.ExtendedLocation/customLocations/Read",
-          "Microsoft.ExtendedLocation/customLocations/deploy/action",
-          "Microsoft.ExtendedLocation/customLocations/enabledresourcetypes/read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Arc ScVmm Private Cloud User",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "7656b436-37d4-490a-a4ab-d39f838f0042",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.HDInsight/clusterPools/clusters/read",
-          "Microsoft.HDInsight/clusterPools/clusters/write",
-          "Microsoft.HDInsight/clusterPools/delete",
-          "Microsoft.HDInsight/clusterPools/read",
-          "Microsoft.HDInsight/clusterPools/write",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/deployments/validate/action",
-          "Microsoft.Resources/deployments/*/read",
-          "Microsoft.Resources/deployments/read",
-          "Microsoft.Resources/deployments/write",
-          "Microsoft.Resources/deployments/exportTemplate/action",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Insights/AlertRules/Write",
-          "Microsoft.Insights/AlertRules/Delete",
-          "Microsoft.Insights/AlertRules/Read",
-          "Microsoft.Insights/AlertRules/Activated/Action",
-          "Microsoft.Insights/AlertRules/Resolved/Action",
-          "Microsoft.Insights/AlertRules/Throttled/Action",
-          "Microsoft.Insights/AlertRules/Incidents/Read",
-          "Microsoft.Insights/metrics/read",
-          "Microsoft.Insights/logs/read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "HDInsight on AKS Cluster Pool Admin",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "fd036e6b-1266-47a0-b0bb-a05d04831731",
     "permissions": [
       {
@@ -8427,6 +8389,44 @@
       }
     ],
     "roleName": "HDInsight on AKS Cluster Admin",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "7656b436-37d4-490a-a4ab-d39f838f0042",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.HDInsight/clusterPools/clusters/read",
+          "Microsoft.HDInsight/clusterPools/clusters/write",
+          "Microsoft.HDInsight/clusterPools/delete",
+          "Microsoft.HDInsight/clusterPools/read",
+          "Microsoft.HDInsight/clusterPools/write",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/deployments/validate/action",
+          "Microsoft.Resources/deployments/*/read",
+          "Microsoft.Resources/deployments/read",
+          "Microsoft.Resources/deployments/write",
+          "Microsoft.Resources/deployments/exportTemplate/action",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Insights/AlertRules/Write",
+          "Microsoft.Insights/AlertRules/Delete",
+          "Microsoft.Insights/AlertRules/Read",
+          "Microsoft.Insights/AlertRules/Activated/Action",
+          "Microsoft.Insights/AlertRules/Resolved/Action",
+          "Microsoft.Insights/AlertRules/Throttled/Action",
+          "Microsoft.Insights/AlertRules/Incidents/Read",
+          "Microsoft.Insights/metrics/read",
+          "Microsoft.Insights/logs/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "HDInsight on AKS Cluster Pool Admin",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -8650,7 +8650,14 @@
           "Microsoft.Authorization/*/read",
           "Microsoft.Insights/alertRules/*",
           "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.HybridCompute/machines/read",
+          "Microsoft.HybridCompute/operations/read",
+          "Microsoft.HybridCompute/locations/operationresults/read",
+          "Microsoft.HybridCompute/locations/operationstatus/read",
+          "Microsoft.AzureStackHCI/virtualMachineInstances/read",
+          "Microsoft.AzureStackHCI/virtualMachineInstances/start/action",
+          "Microsoft.AzureStackHCI/operations/read"
         ],
         "dataActions": [],
         "notActions": [],
@@ -8749,7 +8756,29 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "5af6afb3-c06c-4fa4-8848-71a8aee05683",
+    "id": "18ab4d3d-a1bf-4477-8ad9-8359bc988f69",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.ContainerService/fleets/read",
+          "Microsoft.ContainerService/fleets/listCredentials/action"
+        ],
+        "dataActions": [
+          "Microsoft.ContainerService/fleets/*"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Kubernetes Fleet Manager RBAC Cluster Admin",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "30b27cfc-9c84-438e-b0ce-70e35255df80",
     "permissions": [
       {
         "actions": [
@@ -8762,38 +8791,37 @@
         ],
         "dataActions": [
           "Microsoft.ContainerService/fleets/apps/controllerrevisions/read",
-          "Microsoft.ContainerService/fleets/apps/daemonsets/*",
-          "Microsoft.ContainerService/fleets/apps/deployments/*",
-          "Microsoft.ContainerService/fleets/apps/statefulsets/*",
-          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/*",
-          "Microsoft.ContainerService/fleets/batch/cronjobs/*",
-          "Microsoft.ContainerService/fleets/batch/jobs/*",
-          "Microsoft.ContainerService/fleets/configmaps/*",
-          "Microsoft.ContainerService/fleets/endpoints/*",
+          "Microsoft.ContainerService/fleets/apps/daemonsets/read",
+          "Microsoft.ContainerService/fleets/apps/deployments/read",
+          "Microsoft.ContainerService/fleets/apps/statefulsets/read",
+          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/read",
+          "Microsoft.ContainerService/fleets/batch/cronjobs/read",
+          "Microsoft.ContainerService/fleets/batch/jobs/read",
+          "Microsoft.ContainerService/fleets/configmaps/read",
+          "Microsoft.ContainerService/fleets/endpoints/read",
           "Microsoft.ContainerService/fleets/events.k8s.io/events/read",
           "Microsoft.ContainerService/fleets/events/read",
-          "Microsoft.ContainerService/fleets/extensions/daemonsets/*",
-          "Microsoft.ContainerService/fleets/extensions/deployments/*",
-          "Microsoft.ContainerService/fleets/extensions/ingresses/*",
-          "Microsoft.ContainerService/fleets/extensions/networkpolicies/*",
+          "Microsoft.ContainerService/fleets/extensions/daemonsets/read",
+          "Microsoft.ContainerService/fleets/extensions/deployments/read",
+          "Microsoft.ContainerService/fleets/extensions/ingresses/read",
+          "Microsoft.ContainerService/fleets/extensions/networkpolicies/read",
           "Microsoft.ContainerService/fleets/limitranges/read",
           "Microsoft.ContainerService/fleets/namespaces/read",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/*",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/*",
-          "Microsoft.ContainerService/fleets/persistentvolumeclaims/*",
-          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/*",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/read",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/read",
+          "Microsoft.ContainerService/fleets/persistentvolumeclaims/read",
+          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/read",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/read",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/read",
           "Microsoft.ContainerService/fleets/resourcequotas/read",
-          "Microsoft.ContainerService/fleets/secrets/*",
-          "Microsoft.ContainerService/fleets/serviceaccounts/*",
-          "Microsoft.ContainerService/fleets/services/*"
+          "Microsoft.ContainerService/fleets/serviceaccounts/read",
+          "Microsoft.ContainerService/fleets/services/read"
         ],
         "notActions": [],
         "notDataActions": []
       }
     ],
-    "roleName": "Azure Kubernetes Fleet Manager RBAC Writer",
+    "roleName": "Azure Kubernetes Fleet Manager RBAC Reader",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -8848,6 +8876,54 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "5af6afb3-c06c-4fa4-8848-71a8aee05683",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.ContainerService/fleets/read",
+          "Microsoft.ContainerService/fleets/listCredentials/action"
+        ],
+        "dataActions": [
+          "Microsoft.ContainerService/fleets/apps/controllerrevisions/read",
+          "Microsoft.ContainerService/fleets/apps/daemonsets/*",
+          "Microsoft.ContainerService/fleets/apps/deployments/*",
+          "Microsoft.ContainerService/fleets/apps/statefulsets/*",
+          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/*",
+          "Microsoft.ContainerService/fleets/batch/cronjobs/*",
+          "Microsoft.ContainerService/fleets/batch/jobs/*",
+          "Microsoft.ContainerService/fleets/configmaps/*",
+          "Microsoft.ContainerService/fleets/endpoints/*",
+          "Microsoft.ContainerService/fleets/events.k8s.io/events/read",
+          "Microsoft.ContainerService/fleets/events/read",
+          "Microsoft.ContainerService/fleets/extensions/daemonsets/*",
+          "Microsoft.ContainerService/fleets/extensions/deployments/*",
+          "Microsoft.ContainerService/fleets/extensions/ingresses/*",
+          "Microsoft.ContainerService/fleets/extensions/networkpolicies/*",
+          "Microsoft.ContainerService/fleets/limitranges/read",
+          "Microsoft.ContainerService/fleets/namespaces/read",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/*",
+          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/*",
+          "Microsoft.ContainerService/fleets/persistentvolumeclaims/*",
+          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/*",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
+          "Microsoft.ContainerService/fleets/replicationcontrollers/*",
+          "Microsoft.ContainerService/fleets/resourcequotas/read",
+          "Microsoft.ContainerService/fleets/secrets/*",
+          "Microsoft.ContainerService/fleets/serviceaccounts/*",
+          "Microsoft.ContainerService/fleets/services/*"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Kubernetes Fleet Manager RBAC Writer",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "63bb64ad-9799-4770-b5c3-24ed299a07bf",
     "permissions": [
       {
@@ -8861,75 +8937,6 @@
       }
     ],
     "roleName": "Azure Kubernetes Fleet Manager Contributor Role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "30b27cfc-9c84-438e-b0ce-70e35255df80",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.ContainerService/fleets/read",
-          "Microsoft.ContainerService/fleets/listCredentials/action"
-        ],
-        "dataActions": [
-          "Microsoft.ContainerService/fleets/apps/controllerrevisions/read",
-          "Microsoft.ContainerService/fleets/apps/daemonsets/read",
-          "Microsoft.ContainerService/fleets/apps/deployments/read",
-          "Microsoft.ContainerService/fleets/apps/statefulsets/read",
-          "Microsoft.ContainerService/fleets/autoscaling/horizontalpodautoscalers/read",
-          "Microsoft.ContainerService/fleets/batch/cronjobs/read",
-          "Microsoft.ContainerService/fleets/batch/jobs/read",
-          "Microsoft.ContainerService/fleets/configmaps/read",
-          "Microsoft.ContainerService/fleets/endpoints/read",
-          "Microsoft.ContainerService/fleets/events.k8s.io/events/read",
-          "Microsoft.ContainerService/fleets/events/read",
-          "Microsoft.ContainerService/fleets/extensions/daemonsets/read",
-          "Microsoft.ContainerService/fleets/extensions/deployments/read",
-          "Microsoft.ContainerService/fleets/extensions/ingresses/read",
-          "Microsoft.ContainerService/fleets/extensions/networkpolicies/read",
-          "Microsoft.ContainerService/fleets/limitranges/read",
-          "Microsoft.ContainerService/fleets/namespaces/read",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/ingresses/read",
-          "Microsoft.ContainerService/fleets/networking.k8s.io/networkpolicies/read",
-          "Microsoft.ContainerService/fleets/persistentvolumeclaims/read",
-          "Microsoft.ContainerService/fleets/policy/poddisruptionbudgets/read",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/read",
-          "Microsoft.ContainerService/fleets/replicationcontrollers/read",
-          "Microsoft.ContainerService/fleets/resourcequotas/read",
-          "Microsoft.ContainerService/fleets/serviceaccounts/read",
-          "Microsoft.ContainerService/fleets/services/read"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Kubernetes Fleet Manager RBAC Reader",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "18ab4d3d-a1bf-4477-8ad9-8359bc988f69",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.ContainerService/fleets/read",
-          "Microsoft.ContainerService/fleets/listCredentials/action"
-        ],
-        "dataActions": [
-          "Microsoft.ContainerService/fleets/*"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Kubernetes Fleet Manager RBAC Cluster Admin",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -9095,22 +9102,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "1823dd4f-9b8c-4ab6-ab4e-7397a3684615",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.MachineLearningServices/registries/read",
-          "Microsoft.MachineLearningServices/registries/assets/*"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "AzureML Registry User",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "e503ece1-11d0-4e8e-8e2c-7a6c3bf38815",
     "permissions": [
       {
@@ -9124,6 +9115,22 @@
       }
     ],
     "roleName": "AzureML Compute Operator",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "1823dd4f-9b8c-4ab6-ab4e-7397a3684615",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.MachineLearningServices/registries/read",
+          "Microsoft.MachineLearningServices/registries/assets/*"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "AzureML Registry User",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -9781,6 +9788,25 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "3f2eb865-5811-4578-b90a-6fc6fa0df8e5",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Cdn/operationresults/profileresults/secretresults/read",
+          "Microsoft.Cdn/profiles/secrets/read",
+          "Microsoft.Cdn/profiles/secrets/write",
+          "Microsoft.Cdn/profiles/secrets/delete",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Front Door Secret Contributor",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "0ab34830-df19-4f8c-b84e-aa85b8afa6e8",
     "permissions": [
       {
@@ -9797,6 +9823,23 @@
       }
     ],
     "roleName": "Azure Front Door Domain Contributor",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "0f99d363-226e-4dca-9920-b807cf8e1a5f",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Cdn/operationresults/profileresults/customdomainresults/read",
+          "Microsoft.Cdn/profiles/customdomains/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Front Door Domain Reader",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -9817,31 +9860,36 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "3f2eb865-5811-4578-b90a-6fc6fa0df8e5",
+    "id": "bfc3b73d-c6ff-45eb-9a5f-40298295bf20",
     "permissions": [
       {
         "actions": [
-          "Microsoft.Cdn/operationresults/profileresults/secretresults/read",
-          "Microsoft.Cdn/profiles/secrets/read",
-          "Microsoft.Cdn/profiles/secrets/write",
-          "Microsoft.Cdn/profiles/secrets/delete",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
+          "PaloAltoNetworks.Cloudngfw/localRulestacks/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Support/*"
         ],
         "dataActions": [],
         "notActions": [],
         "notDataActions": []
       }
     ],
-    "roleName": "Azure Front Door Secret Contributor",
+    "roleName": "LocalRulestacksAdministrator role",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "0f99d363-226e-4dca-9920-b807cf8e1a5f",
+    "id": "d18ad5f3-1baf-4119-b49b-d944edb1f9d0",
     "permissions": [
       {
         "actions": [
-          "Microsoft.Cdn/operationresults/profileresults/customdomainresults/read",
-          "Microsoft.Cdn/profiles/customdomains/read",
+          "Microsoft.DBforMySQL/flexibleServers/validateBackup/action",
+          "Microsoft.DBforMySQL/flexibleServers/backupAndExport/action",
+          "Microsoft.DBforMySQL/locations/operationResults/read",
+          "Microsoft.DBforMySQL/locations/azureAsyncOperation/read",
+          "Microsoft.Resources/subscriptions/read",
           "Microsoft.Resources/subscriptions/resourceGroups/read"
         ],
         "dataActions": [],
@@ -9849,7 +9897,7 @@
         "notDataActions": []
       }
     ],
-    "roleName": "Azure Front Door Domain Reader",
+    "roleName": "MySQL Backup And Export Operator",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -9956,26 +10004,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "d18ad5f3-1baf-4119-b49b-d944edb1f9d0",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.DBforMySQL/flexibleServers/validateBackup/action",
-          "Microsoft.DBforMySQL/flexibleServers/backupAndExport/action",
-          "Microsoft.DBforMySQL/locations/operationResults/read",
-          "Microsoft.DBforMySQL/locations/azureAsyncOperation/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "MySQL Backup And Export Operator",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "a8835c7d-b5cb-47fa-b6f0-65ea10ce07a2",
     "permissions": [
       {
@@ -10018,27 +10046,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "bfc3b73d-c6ff-45eb-9a5f-40298295bf20",
-    "permissions": [
-      {
-        "actions": [
-          "PaloAltoNetworks.Cloudngfw/localRulestacks/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Support/*"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "LocalRulestacksAdministrator role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "7392c568-9289-4bde-aaaa-b7131215889d",
     "permissions": [
       {
@@ -10071,31 +10078,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "d59a3e9c-6d52-4a5a-aeed-6bf3cf0e31da",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.ApiManagement/service/users/read",
-          "Microsoft.ApiManagement/service/tags/read",
-          "Microsoft.ApiManagement/service/tags/apiLinks/*",
-          "Microsoft.ApiManagement/service/tags/operationLinks/*",
-          "Microsoft.ApiManagement/service/tags/productLinks/*",
-          "Microsoft.ApiManagement/service/products/read",
-          "Microsoft.ApiManagement/service/products/apiLinks/*",
-          "Microsoft.ApiManagement/service/groups/read",
-          "Microsoft.ApiManagement/service/groups/users/*",
-          "Microsoft.ApiManagement/service/read",
-          "Microsoft.Authorization/*/read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "API Management Service Workspace API Product Manager",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "56328988-075d-4c6a-8766-d93edd6725b6",
     "permissions": [
       {
@@ -10117,6 +10099,22 @@
       }
     ],
     "roleName": "API Management Workspace API Developer",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "0c34c906-8d99-4cb7-8bb7-33f5b0a1a799",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.ApiManagement/service/workspaces/*",
+          "Microsoft.Authorization/*/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "API Management Workspace Contributor",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -10179,11 +10177,20 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "0c34c906-8d99-4cb7-8bb7-33f5b0a1a799",
+    "id": "d59a3e9c-6d52-4a5a-aeed-6bf3cf0e31da",
     "permissions": [
       {
         "actions": [
-          "Microsoft.ApiManagement/service/workspaces/*",
+          "Microsoft.ApiManagement/service/users/read",
+          "Microsoft.ApiManagement/service/tags/read",
+          "Microsoft.ApiManagement/service/tags/apiLinks/*",
+          "Microsoft.ApiManagement/service/tags/operationLinks/*",
+          "Microsoft.ApiManagement/service/tags/productLinks/*",
+          "Microsoft.ApiManagement/service/products/read",
+          "Microsoft.ApiManagement/service/products/apiLinks/*",
+          "Microsoft.ApiManagement/service/groups/read",
+          "Microsoft.ApiManagement/service/groups/users/*",
+          "Microsoft.ApiManagement/service/read",
           "Microsoft.Authorization/*/read"
         ],
         "dataActions": [],
@@ -10191,23 +10198,7 @@
         "notDataActions": []
       }
     ],
-    "roleName": "API Management Workspace Contributor",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "b8eda974-7b85-4f76-af95-65846b26df6d",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [
-          "Microsoft.Storage/storageAccounts/fileServices/fileshares/files/read",
-          "Microsoft.Storage/storageAccounts/fileServices/readFileBackupSemantics/action"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Storage File Data Privileged Reader",
+    "roleName": "API Management Service Workspace API Product Manager",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -10228,6 +10219,22 @@
       }
     ],
     "roleName": "Storage File Data Privileged Contributor",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "b8eda974-7b85-4f76-af95-65846b26df6d",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [
+          "Microsoft.Storage/storageAccounts/fileServices/fileshares/files/read",
+          "Microsoft.Storage/storageAccounts/fileServices/readFileBackupSemantics/action"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Storage File Data Privileged Reader",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -10391,32 +10398,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "c8ae6279-5a0b-4cb2-b3f0-d4d62845742c",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.AzureSphere/*/read",
-          "Microsoft.AzureSphere/catalogs/countDevices/action",
-          "Microsoft.AzureSphere/catalogs/listDeviceGroups/action",
-          "Microsoft.AzureSphere/catalogs/listDeviceInsights/action",
-          "Microsoft.AzureSphere/catalogs/listDevices/action",
-          "Microsoft.AzureSphere/catalogs/listDeployments/action",
-          "Microsoft.AzureSphere/catalogs/products/countDevices/action",
-          "Microsoft.AzureSphere/catalogs/products/deviceGroups/countDevices/action",
-          "Microsoft.AzureSphere/catalogs/certificates/retrieveCertChain/action",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Insights/DiagnosticSettings/Read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Sphere Reader",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "6d994134-994b-4a59-9974-f479f0b227fb",
     "permissions": [
       {
@@ -10442,6 +10423,32 @@
       }
     ],
     "roleName": "Azure Sphere Publisher",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "c8ae6279-5a0b-4cb2-b3f0-d4d62845742c",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.AzureSphere/*/read",
+          "Microsoft.AzureSphere/catalogs/countDevices/action",
+          "Microsoft.AzureSphere/catalogs/listDeviceGroups/action",
+          "Microsoft.AzureSphere/catalogs/listDeviceInsights/action",
+          "Microsoft.AzureSphere/catalogs/listDevices/action",
+          "Microsoft.AzureSphere/catalogs/listDeployments/action",
+          "Microsoft.AzureSphere/catalogs/products/countDevices/action",
+          "Microsoft.AzureSphere/catalogs/products/deviceGroups/countDevices/action",
+          "Microsoft.AzureSphere/catalogs/certificates/retrieveCertChain/action",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Insights/DiagnosticSettings/Read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Sphere Reader",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -10495,22 +10502,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "7ac06ca7-21ca-47e3-a67b-cbd6e6223baf",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [
-          "Microsoft.CognitiveSearch/indexes/schema/*",
-          "Microsoft.CognitiveSearch/indexes/documents/*"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Cognitive Search Serverless Data Contributor (Deprecated)",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "79b01272-bf9f-4f4c-9517-5506269cf524",
     "permissions": [
       {
@@ -10524,6 +10515,22 @@
       }
     ],
     "roleName": "Cognitive Search Serverless Data Reader (Deprecated)",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "7ac06ca7-21ca-47e3-a67b-cbd6e6223baf",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [
+          "Microsoft.CognitiveSearch/indexes/schema/*",
+          "Microsoft.CognitiveSearch/indexes/documents/*"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Cognitive Search Serverless Data Contributor (Deprecated)",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -10740,54 +10747,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "523776ba-4eb2-4600-a3c8-f2dc93da4bdb",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/operationresults/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Support/*",
-          "Microsoft.Web/connectionGateways/*/read",
-          "Microsoft.Web/connections/*",
-          "Microsoft.Web/customApis/*",
-          "Microsoft.Web/serverFarms/read",
-          "microsoft.web/sites/config/appsettings/read",
-          "Microsoft.Web/sites/config/list/Action",
-          "Microsoft.Web/sites/config/Read",
-          "microsoft.web/sites/config/Write",
-          "microsoft.web/sites/config/web/appsettings/delete",
-          "microsoft.web/sites/config/web/appsettings/read",
-          "microsoft.web/sites/config/web/appsettings/write",
-          "microsoft.web/sites/deployWorkflowArtifacts/action",
-          "microsoft.web/sites/hostruntime/*",
-          "microsoft.web/sites/listworkflowsconnections/action",
-          "Microsoft.Web/sites/publish/Action",
-          "Microsoft.Web/sites/Read",
-          "microsoft.web/sites/slots/config/appsettings/read",
-          "microsoft.web/sites/slots/config/appsettings/write",
-          "Microsoft.Web/sites/slots/config/list/Action",
-          "Microsoft.Web/sites/slots/config/Read",
-          "microsoft.web/sites/slots/config/web/appsettings/delete",
-          "microsoft.web/sites/slots/deployWorkflowArtifacts/action",
-          "microsoft.web/sites/slots/listworkflowsconnections/action",
-          "Microsoft.Web/sites/slots/publish/Action",
-          "microsoft.web/sites/slots/workflows/read",
-          "microsoft.web/sites/slots/workflowsconfiguration/read",
-          "microsoft.web/sites/workflows/*",
-          "microsoft.web/sites/workflowsconfiguration/*"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Logic Apps Standard Developer (Preview)",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "ad710c24-b039-4e85-a019-deb4a06e8570",
     "permissions": [
       {
@@ -10885,6 +10844,54 @@
       }
     ],
     "roleName": "Logic Apps Standard Reader (Preview)",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "523776ba-4eb2-4600-a3c8-f2dc93da4bdb",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Support/*",
+          "Microsoft.Web/connectionGateways/*/read",
+          "Microsoft.Web/connections/*",
+          "Microsoft.Web/customApis/*",
+          "Microsoft.Web/serverFarms/read",
+          "microsoft.web/sites/config/appsettings/read",
+          "Microsoft.Web/sites/config/list/Action",
+          "Microsoft.Web/sites/config/Read",
+          "microsoft.web/sites/config/Write",
+          "microsoft.web/sites/config/web/appsettings/delete",
+          "microsoft.web/sites/config/web/appsettings/read",
+          "microsoft.web/sites/config/web/appsettings/write",
+          "microsoft.web/sites/deployWorkflowArtifacts/action",
+          "microsoft.web/sites/hostruntime/*",
+          "microsoft.web/sites/listworkflowsconnections/action",
+          "Microsoft.Web/sites/publish/Action",
+          "Microsoft.Web/sites/Read",
+          "microsoft.web/sites/slots/config/appsettings/read",
+          "microsoft.web/sites/slots/config/appsettings/write",
+          "Microsoft.Web/sites/slots/config/list/Action",
+          "Microsoft.Web/sites/slots/config/Read",
+          "microsoft.web/sites/slots/config/web/appsettings/delete",
+          "microsoft.web/sites/slots/deployWorkflowArtifacts/action",
+          "microsoft.web/sites/slots/listworkflowsconnections/action",
+          "Microsoft.Web/sites/slots/publish/Action",
+          "microsoft.web/sites/slots/workflows/read",
+          "microsoft.web/sites/slots/workflowsconfiguration/read",
+          "microsoft.web/sites/workflows/*",
+          "microsoft.web/sites/workflowsconfiguration/*"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Logic Apps Standard Developer (Preview)",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11027,27 +11034,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "4b0f2fd7-60b4-4eca-896f-4435034f8bf5",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.EventGrid/*/read",
-          "Microsoft.Insights/alertRules/*",
-          "Microsoft.Resources/deployments/*",
-          "Microsoft.Resources/subscriptions/resourceGroups/read"
-        ],
-        "dataActions": [
-          "Microsoft.EventGrid/topicSpaces/subscribe/action"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "EventGrid TopicSpaces Subscriber",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "a12b0b94-b317-4dcd-84a8-502ce99884c6",
     "permissions": [
       {
@@ -11066,6 +11052,27 @@
       }
     ],
     "roleName": "EventGrid TopicSpaces Publisher",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "4b0f2fd7-60b4-4eca-896f-4435034f8bf5",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.EventGrid/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read"
+        ],
+        "dataActions": [
+          "Microsoft.EventGrid/topicSpaces/subscribe/action"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "EventGrid TopicSpaces Subscriber",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11102,6 +11109,23 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "8a90fa6b-6997-4a07-8a95-30633a7c97b9",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [
+          "Microsoft.HealthDataAIServices/DeidServices/Batch/write",
+          "Microsoft.HealthDataAIServices/DeidServices/Batch/delete",
+          "Microsoft.HealthDataAIServices/DeidServices/Batch/read"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "DeID Batch Data Owner",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "b73a14ee-91f5-41b7-bd81-920e12466be9",
     "permissions": [
       {
@@ -11117,23 +11141,6 @@
       }
     ],
     "roleName": "DeID Batch Data Reader",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "8a90fa6b-6997-4a07-8a95-30633a7c97b9",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [
-          "Microsoft.HealthDataAIServices/DeidServices/Batch/write",
-          "Microsoft.HealthDataAIServices/DeidServices/Batch/delete",
-          "Microsoft.HealthDataAIServices/DeidServices/Batch/read"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "DeID Batch Data Owner",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11267,82 +11274,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "4b3fe76c-f777-4d24-a2d7-b027b0f7b273",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.AzureStackHCI/VirtualMachines/Read",
-          "Microsoft.AzureStackHCI/virtualMachineInstances/Read",
-          "Microsoft.AzureStackHCI/VirtualMachines/Extensions/Read",
-          "Microsoft.AzureStackHCI/VirtualNetworks/Read",
-          "Microsoft.AzureStackHCI/LogicalNetworks/Read",
-          "Microsoft.AzureStackHCI/NetworkInterfaces/Read",
-          "Microsoft.AzureStackHCI/VirtualHardDisks/Read",
-          "Microsoft.AzureStackHCI/StorageContainers/Read",
-          "Microsoft.AzureStackHCI/GalleryImages/Read",
-          "Microsoft.AzureStackHCI/MarketplaceGalleryImages/Read",
-          "Microsoft.Insights/AlertRules/Write",
-          "Microsoft.Insights/AlertRules/Delete",
-          "Microsoft.Insights/AlertRules/Read",
-          "Microsoft.Insights/AlertRules/Activated/Action",
-          "Microsoft.Insights/AlertRules/Resolved/Action",
-          "Microsoft.Insights/AlertRules/Throttled/Action",
-          "Microsoft.Insights/AlertRules/Incidents/Read",
-          "Microsoft.Resources/deployments/read",
-          "Microsoft.Resources/deployments/exportTemplate/action",
-          "Microsoft.Resources/deployments/operations/read",
-          "Microsoft.Resources/deployments/operationstatuses/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
-          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
-          "Microsoft.ResourceHealth/availabilityStatuses/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/subscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.Resources/subscriptions/operationresults/read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Stack HCI VM Reader",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "64702f94-c441-49e6-a78b-ef80e0188fee",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.MachineLearningServices/workspaces/*/read",
-          "Microsoft.MachineLearningServices/workspaces/*/action",
-          "Microsoft.MachineLearningServices/workspaces/*/delete",
-          "Microsoft.MachineLearningServices/workspaces/*/write",
-          "Microsoft.MachineLearningServices/locations/*/read",
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/deployments/*"
-        ],
-        "dataActions": [
-          "Microsoft.CognitiveServices/accounts/OpenAI/*",
-          "Microsoft.CognitiveServices/accounts/SpeechServices/*",
-          "Microsoft.CognitiveServices/accounts/ContentSafety/*"
-        ],
-        "notActions": [
-          "Microsoft.MachineLearningServices/workspaces/delete",
-          "Microsoft.MachineLearningServices/workspaces/write",
-          "Microsoft.MachineLearningServices/workspaces/listKeys/action",
-          "Microsoft.MachineLearningServices/workspaces/hubs/write",
-          "Microsoft.MachineLearningServices/workspaces/hubs/delete",
-          "Microsoft.MachineLearningServices/workspaces/featurestores/write",
-          "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
-        ],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure AI Developer",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "874d1c73-6003-4e60-a13a-cb31ea190a85",
     "permissions": [
       {
@@ -11430,6 +11361,82 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "64702f94-c441-49e6-a78b-ef80e0188fee",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.MachineLearningServices/workspaces/*/read",
+          "Microsoft.MachineLearningServices/workspaces/*/action",
+          "Microsoft.MachineLearningServices/workspaces/*/delete",
+          "Microsoft.MachineLearningServices/workspaces/*/write",
+          "Microsoft.MachineLearningServices/locations/*/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/deployments/*"
+        ],
+        "dataActions": [
+          "Microsoft.CognitiveServices/accounts/OpenAI/*",
+          "Microsoft.CognitiveServices/accounts/SpeechServices/*",
+          "Microsoft.CognitiveServices/accounts/ContentSafety/*"
+        ],
+        "notActions": [
+          "Microsoft.MachineLearningServices/workspaces/delete",
+          "Microsoft.MachineLearningServices/workspaces/write",
+          "Microsoft.MachineLearningServices/workspaces/listKeys/action",
+          "Microsoft.MachineLearningServices/workspaces/hubs/write",
+          "Microsoft.MachineLearningServices/workspaces/hubs/delete",
+          "Microsoft.MachineLearningServices/workspaces/featurestores/write",
+          "Microsoft.MachineLearningServices/workspaces/featurestores/delete"
+        ],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure AI Developer",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "4b3fe76c-f777-4d24-a2d7-b027b0f7b273",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.AzureStackHCI/VirtualMachines/Read",
+          "Microsoft.AzureStackHCI/virtualMachineInstances/Read",
+          "Microsoft.AzureStackHCI/VirtualMachines/Extensions/Read",
+          "Microsoft.AzureStackHCI/VirtualNetworks/Read",
+          "Microsoft.AzureStackHCI/LogicalNetworks/Read",
+          "Microsoft.AzureStackHCI/NetworkInterfaces/Read",
+          "Microsoft.AzureStackHCI/VirtualHardDisks/Read",
+          "Microsoft.AzureStackHCI/StorageContainers/Read",
+          "Microsoft.AzureStackHCI/GalleryImages/Read",
+          "Microsoft.AzureStackHCI/MarketplaceGalleryImages/Read",
+          "Microsoft.Insights/AlertRules/Write",
+          "Microsoft.Insights/AlertRules/Delete",
+          "Microsoft.Insights/AlertRules/Read",
+          "Microsoft.Insights/AlertRules/Activated/Action",
+          "Microsoft.Insights/AlertRules/Resolved/Action",
+          "Microsoft.Insights/AlertRules/Throttled/Action",
+          "Microsoft.Insights/AlertRules/Incidents/Read",
+          "Microsoft.Resources/deployments/read",
+          "Microsoft.Resources/deployments/exportTemplate/action",
+          "Microsoft.Resources/deployments/operations/read",
+          "Microsoft.Resources/deployments/operationstatuses/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operations/read",
+          "Microsoft.Resources/subscriptions/resourcegroups/deployments/operationstatuses/read",
+          "Microsoft.ResourceHealth/availabilityStatuses/read",
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/subscriptions/operationresults/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Stack HCI VM Reader",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "eb960402-bf75-4cc3-8d68-35b34f960f72",
     "permissions": [
       {
@@ -11455,26 +11462,19 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "78cbd9e7-9798-4e2e-9b5a-547d9ebb31fb",
+    "id": "3afb7f49-54cb-416e-8c09-6dc049efa503",
     "permissions": [
       {
         "actions": [
           "Microsoft.Authorization/*/read",
-          "Microsoft.EventGrid/eventSubscriptions/read",
-          "Microsoft.EventGrid/topicTypes/eventSubscriptions/read",
-          "Microsoft.EventGrid/locations/eventSubscriptions/read",
-          "Microsoft.EventGrid/locations/topicTypes/eventSubscriptions/read",
-          "Microsoft.Resources/subscriptions/resourceGroups/read",
-          "Microsoft.EventGrid/namespaces/read"
+          "Microsoft.Resources/deployments/*"
         ],
-        "dataActions": [
-          "Microsoft.EventGrid/events/receive/action"
-        ],
+        "dataActions": [],
         "notActions": [],
         "notDataActions": []
       }
     ],
-    "roleName": "EventGrid Data Receiver",
+    "roleName": "Azure AI Inference Deployment Operator",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11505,6 +11505,60 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "78cbd9e7-9798-4e2e-9b5a-547d9ebb31fb",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.EventGrid/eventSubscriptions/read",
+          "Microsoft.EventGrid/topicTypes/eventSubscriptions/read",
+          "Microsoft.EventGrid/locations/eventSubscriptions/read",
+          "Microsoft.EventGrid/locations/topicTypes/eventSubscriptions/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.EventGrid/namespaces/read"
+        ],
+        "dataActions": [
+          "Microsoft.EventGrid/events/receive/action"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "EventGrid Data Receiver",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "65a14201-8f6c-4c28-bec4-12619c5a9aaa",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Connected Cluster Managed Identity CheckAccess Reader",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "c64499e0-74c3-47ad-921c-13865957895c",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Advisor/resiliencyReviews/read",
+          "Microsoft.Advisor/triageRecommendations/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Advisor Reviews Reader",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "8aac15f0-d885-4138-8afa-bfb5872f7d13",
     "permissions": [
       {
@@ -11525,53 +11579,6 @@
       }
     ],
     "roleName": "Advisor Reviews Contributor",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "c64499e0-74c3-47ad-921c-13865957895c",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Advisor/resiliencyReviews/read",
-          "Microsoft.Advisor/triageRecommendations/read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Advisor Reviews Reader",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "3afb7f49-54cb-416e-8c09-6dc049efa503",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read",
-          "Microsoft.Resources/deployments/*"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure AI Inference Deployment Operator",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "65a14201-8f6c-4c28-bec4-12619c5a9aaa",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.Authorization/*/read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Connected Cluster Managed Identity CheckAccess Reader",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11645,23 +11652,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "fc3f91a1-40bf-4439-8c46-45edbd83563a",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.HybridContainerService/provisionedClusterInstances/read",
-          "Microsoft.HybridContainerService/provisionedClusterInstances/listUserKubeconfig/action",
-          "Microsoft.Kubernetes/connectedClusters/Read"
-        ],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Kubernetes Service Hybrid Cluster User Role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "b5092dac-c796-4349-8681-1a322a31c3f9",
     "permissions": [
       {
@@ -11717,6 +11707,23 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "fc3f91a1-40bf-4439-8c46-45edbd83563a",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.HybridContainerService/provisionedClusterInstances/read",
+          "Microsoft.HybridContainerService/provisionedClusterInstances/listUserKubeconfig/action",
+          "Microsoft.Kubernetes/connectedClusters/Read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Kubernetes Service Hybrid Cluster User Role",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "3d5f3eff-eb94-473d-91e3-7aac74d6c0bb",
     "permissions": [
       {
@@ -11744,6 +11751,29 @@
       }
     ],
     "roleName": "Enclave Owner Role",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "e6aadb6b-e64f-41c0-9392-d2bba3bc3ebc",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Mission/Locations/OperationStatuses/read",
+          "Microsoft.Mission/Operations/read",
+          "Microsoft.Mission/catalogs/read",
+          "Microsoft.Mission/communities/read",
+          "Microsoft.Mission/internalConnections/read",
+          "Microsoft.Mission/externalConnections/read",
+          "Microsoft.Mission/virtualEnclaves/read",
+          "Microsoft.Mission/virtualEnclaves/endpoints/read",
+          "Microsoft.Mission/virtualEnclaves/workloads/read"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Community Reader Role",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11777,26 +11807,18 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "e6aadb6b-e64f-41c0-9392-d2bba3bc3ebc",
+    "id": "44f0a1a8-6fea-4b35-980a-8ff50c487c97",
     "permissions": [
       {
-        "actions": [
-          "Microsoft.Mission/Locations/OperationStatuses/read",
-          "Microsoft.Mission/Operations/read",
-          "Microsoft.Mission/catalogs/read",
-          "Microsoft.Mission/communities/read",
-          "Microsoft.Mission/internalConnections/read",
-          "Microsoft.Mission/externalConnections/read",
-          "Microsoft.Mission/virtualEnclaves/read",
-          "Microsoft.Mission/virtualEnclaves/endpoints/read",
-          "Microsoft.Mission/virtualEnclaves/workloads/read"
+        "actions": [],
+        "dataActions": [
+          "Microsoft.KeyVault/vaults/secrets/setSecret/action"
         ],
-        "dataActions": [],
         "notActions": [],
         "notDataActions": []
       }
     ],
-    "roleName": "Community Reader Role",
+    "roleName": "Operator Nexus Key Vault Writer Service Role (Preview)",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11813,21 +11835,6 @@
       }
     ],
     "roleName": "Storage Account Encryption Scope Contributor Role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "44f0a1a8-6fea-4b35-980a-8ff50c487c97",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [
-          "Microsoft.KeyVault/vaults/secrets/setSecret/action"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Operator Nexus Key Vault Writer Service Role (Preview)",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -11919,24 +11926,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "6593e776-2a30-40f9-8a32-4fe28b77655d",
-    "permissions": [
-      {
-        "actions": [
-          "Microsoft.AppPlatform/Spring/read",
-          "Microsoft.AppPlatform/Spring/configurationServices/read"
-        ],
-        "dataActions": [
-          "Microsoft.AppPlatform/Spring/ApplicationConfigurationService/logstream/action"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure Spring Apps Application Configuration Service Log Reader Role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "4301dc2a-25a9-44b0-ae63-3636cf7f2bd2",
     "permissions": [
       {
@@ -11955,6 +11944,39 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
+    "id": "c7244dfb-f447-457d-b2ba-3999044d1706",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [
+          "Microsoft.ApiCenter/services/*/read"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure API Center Data Reader",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "6593e776-2a30-40f9-8a32-4fe28b77655d",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.AppPlatform/Spring/read",
+          "Microsoft.AppPlatform/Spring/configurationServices/read"
+        ],
+        "dataActions": [
+          "Microsoft.AppPlatform/Spring/ApplicationConfigurationService/logstream/action"
+        ],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure Spring Apps Application Configuration Service Log Reader Role",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
     "id": "207bcc4b-86a6-4487-9141-d6c1f4c238aa",
     "permissions": [
       {
@@ -11968,21 +11990,6 @@
       }
     ],
     "roleName": "Azure Edge On-Site Deployment Engineer",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "c7244dfb-f447-457d-b2ba-3999044d1706",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [
-          "Microsoft.ApiCenter/services/*/read"
-        ],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure API Center Data Reader",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -12004,52 +12011,31 @@
     "id": "8bb6f106-b146-4ee6-a3f9-b9c5a96e0ae5",
     "permissions": [
       {
-        "actions": [],
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/*",
+          "Microsoft.Resources/deployments/*",
+          "Microsoft.Resources/subscriptions/resourceGroups/read",
+          "Microsoft.Resources/subscriptions/resourceGroups/write",
+          "Microsoft.Resources/subscriptions/operationresults/read",
+          "Microsoft.Resources/subscriptions/read",
+          "Microsoft.KubernetesConfiguration/extensions/write",
+          "Microsoft.KubernetesConfiguration/extensions/read",
+          "Microsoft.KubernetesConfiguration/extensions/delete",
+          "Microsoft.KubernetesConfiguration/extensions/operations/read",
+          "Microsoft.Kubernetes/connectedClusters/Write",
+          "Microsoft.Kubernetes/connectedClusters/read",
+          "Microsoft.OperationalInsights/workspaces/write",
+          "Microsoft.OperationalInsights/workspaces/read",
+          "Microsoft.OperationalInsights/workspaces/listKeys/action",
+          "Microsoft.OperationalInsights/workspaces/sharedkeys/action"
+        ],
         "dataActions": [],
         "notActions": [],
         "notDataActions": []
       }
     ],
     "roleName": "Defender Kubernetes Agent Operator",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "a1f96423-95ce-4224-ab27-4e3dc72facd4",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure RedHat OpenShift Cloud Controller Manager Role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "5b7237c5-45e1-49d6-bc18-a1f62f400748",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure RedHat OpenShift Storage Operator Role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
-    "id": "be7a6435-15ae-4171-8f30-4a343eff9e8f",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure RedHat OpenShift Network Operator Role",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -12066,19 +12052,6 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "0d7aedc0-15fd-4a67-a412-efad370c947e",
-    "permissions": [
-      {
-        "actions": [],
-        "dataActions": [],
-        "notActions": [],
-        "notDataActions": []
-      }
-    ],
-    "roleName": "Azure RedHat OpenShift Azure Files Storage Operator Role",
-    "type": "Microsoft.Authorization/roleDefinitions"
-  },
-  {
     "id": "4436bae4-7702-4c84-919b-c4069ff25ee2",
     "permissions": [
       {
@@ -12092,7 +12065,7 @@
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
-    "id": "0358943c-7e01-48ba-8889-02cc51d78637",
+    "id": "be7a6435-15ae-4171-8f30-4a343eff9e8f",
     "permissions": [
       {
         "actions": [],
@@ -12101,7 +12074,20 @@
         "notDataActions": []
       }
     ],
-    "roleName": "Azure RedHat OpenShift Machine API Operator Role",
+    "roleName": "Azure RedHat OpenShift Network Operator Role",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "5b7237c5-45e1-49d6-bc18-a1f62f400748",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure RedHat OpenShift Storage Operator Role",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -12115,6 +12101,45 @@
       }
     ],
     "roleName": "Azure RedHat OpenShift Cluster Ingress Operator Role",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "0d7aedc0-15fd-4a67-a412-efad370c947e",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure RedHat OpenShift Azure Files Storage Operator Role",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "a1f96423-95ce-4224-ab27-4e3dc72facd4",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure RedHat OpenShift Cloud Controller Manager Role",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "0358943c-7e01-48ba-8889-02cc51d78637",
+    "permissions": [
+      {
+        "actions": [],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "Azure RedHat OpenShift Machine API Operator Role",
     "type": "Microsoft.Authorization/roleDefinitions"
   },
   {
@@ -12156,6 +12181,59 @@
       }
     ],
     "roleName": "Azure Sphere Owner",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "d0f495dc-44ef-4140-aeb0-b89110e6a7c1",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/read",
+          "MICROSOFT.QUOTA/QUOTAS/READ",
+          "MICROSOFT.QUOTA/USAGES/READ",
+          "MICROSOFT.QUOTA/QUOTAREQUESTS/READ",
+          "MICROSOFT.QUOTA/REGISTER/ACTION",
+          "Microsoft.Quota/GROUPQUOTAS/READ",
+          "Microsoft.Quota/GROUPQUOTAS/subscriptions/READ",
+          "Microsoft.Quota/GROUPQUOTAS/groupQuotaLimits/READ",
+          "Microsoft.Quota/GROUPQUOTAS/quotaAllocations/READ"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "GroupQuota Reader",
+    "type": "Microsoft.Authorization/roleDefinitions"
+  },
+  {
+    "id": "e2217c0e-04bb-4724-9580-91cf9871bc01",
+    "permissions": [
+      {
+        "actions": [
+          "Microsoft.Authorization/*/read",
+          "Microsoft.Insights/alertRules/read",
+          "MICROSOFT.QUOTA/QUOTAS/WRITE",
+          "MICROSOFT.QUOTA/QUOTAS/READ",
+          "MICROSOFT.QUOTA/USAGES/READ",
+          "MICROSOFT.QUOTA/QUOTAREQUESTS/READ",
+          "MICROSOFT.QUOTA/REGISTER/ACTION",
+          "Microsoft.Quota/GROUPQUOTAS/READ",
+          "Microsoft.Quota/GROUPQUOTAS/subscriptions/READ",
+          "Microsoft.Quota/GROUPQUOTAS/groupQuotaLimits/READ",
+          "Microsoft.Quota/GROUPQUOTAS/quotaAllocations/READ",
+          "Microsoft.Quota/GROUPQUOTAS/WRITE",
+          "Microsoft.Quota/GROUPQUOTAS/subscriptions/WRITE",
+          "Microsoft.Quota/GROUPQUOTAS/groupQuotaLimits/WRITE",
+          "Microsoft.Quota/GROUPQUOTAS/quotaAllocations/WRITE"
+        ],
+        "dataActions": [],
+        "notActions": [],
+        "notDataActions": []
+      }
+    ],
+    "roleName": "GroupQuota Request Operator",
     "type": "Microsoft.Authorization/roleDefinitions"
   }
 ]
