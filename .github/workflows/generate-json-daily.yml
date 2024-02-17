@@ -5,6 +5,9 @@ on:
     - cron: '0 12 * * *'
   workflow_dispatch:
 
+permissions:
+    contents: write
+    
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -30,4 +33,4 @@ jobs:
           git config --global user.email "actions@github.com"
           git config --global user.name "GitHub Action"
           git add -A
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated update of JSONs from az-cli"; git push origin master)
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Automated update of JSONs from az-cli"; git push)
