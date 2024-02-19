@@ -49,7 +49,7 @@ const App = () => {
           if (a.privileged === true && b.privileged === false) return 1;
           if (a.privileged === false && b.privileged === true) return -1;
 
-          if (a.matchingPermissionsTotal == 0) {
+          if (a.matchingPermissionsTotal === 0) {
             return 1;
           }
 
@@ -195,7 +195,7 @@ const App = () => {
       if (a.privileged === true && b.privileged === false) return 1;
       if (a.privileged === false && b.privileged === true) return -1;
 
-      if (a.matchingPermissionsTotal == 0) {
+      if (a.matchingPermissionsTotal === 0) {
         return 1;
       }
 
