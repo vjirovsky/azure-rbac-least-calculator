@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table, } from 'antd';
 import { Select, Button } from 'antd';
-import { RedoOutlined } from '@ant-design/icons';
+import { RedoOutlined, WarningOutlined } from '@ant-design/icons';
 import { useNavigate, useLocation } from 'react-router-dom';
 import queryString from 'query-string';
 import { useMatomo } from '@datapunt/matomo-tracker-react'
@@ -85,6 +85,41 @@ const App = () => {
       });
   }, []);
 
+  const filterPermissionsFunction = (value, record) => {
+    var action = value.trim();
+
+    var roleDefinition = record.permissions[0];
+
+    var permission = allPermissions[action.toLowerCase()];
+    if (permission !== undefined) {
+
+      if (permission.isDataAction) {
+        return (isPermissionMatchForRoleSet(action, roleDefinition.dataActions))
+          &&
+          !(isPermissionMatchForRoleSet(action, roleDefinition.notDataActions));
+      }
+      else {
+        return (isPermissionMatchForRoleSet(action, roleDefinition.actions))
+          &&
+          !(isPermissionMatchForRoleSet(action, roleDefinition.notActions));
+
+      }
+
+    }
+    //console.error('action doesn\'t exist ' + action.toLowerCase());
+    // The action is allowed if it is allowed or a data operation is allowed,
+    // and it is not disallowed and a data operation is not disallowed
+
+  };
+
+  
+  const filterPrivilegedFunction = (value, record) => {
+    var privilegedRequested = (value.trim() === 'true');
+
+    return filterPermissionsFunction('Microsoft.Authorization/roleAssignments/write', record) === privilegedRequested;
+
+  };
+
 
   const handleChange = (filters, dryRun = false) => {
     console.log('handleChange, filters: ' + JSON.stringify(filters) + ', dryRun: ' + dryRun);
@@ -104,7 +139,7 @@ const App = () => {
       currentData = currentData.filter(item => filters.id.includes(item.id));
 
       filters.id.every(
-        id => trackEvent({ category: 'filtering-id', action: id})
+        id => trackEvent({ category: 'filtering-id', action: id })
       )
     }
 
@@ -112,7 +147,7 @@ const App = () => {
       currentData = currentData.filter(item => filters.name.includes(item.roleName));
 
       filters.name.every(
-        name => trackEvent({ category: 'filtering-name', action: name})
+        name => trackEvent({ category: 'filtering-name', action: name })
       )
     }
 
@@ -124,12 +159,27 @@ const App = () => {
             permission => filterPermissionsFunction(permission.trim(), item)
           )
       );
-       currentData.filter(
+      currentData.filter(
         item =>
           filters.permissions.every(
             permission => trackEvent({ category: 'filtering-permission', action: permission.trim() })
           )
       );
+    }
+
+    if (filters.privileged && filters.privileged.length > 0) {
+
+      var privilegedFilters = filters.privileged.map(privilegedRequested => (privilegedRequested === 'true'));
+
+      currentData = currentData.filter(
+        record => privilegedFilters.some(
+          privilegedRequested => filterPermissionsFunction('Microsoft.Authorization/roleAssignments/write', record) == privilegedRequested
+        )
+      );
+
+      filters.privileged.every(
+        privilegedRequested => trackEvent({ category: 'filtering-privileged', action: privilegedRequested })
+      )
     }
 
     setCurrentData(currentData);
@@ -171,6 +221,11 @@ const App = () => {
     handleChange(newFilters, false);
   };
 
+  const handleFilterPrivilegedChange = (value) => {
+    const newFilters = { ...filters, privileged: value };
+    handleChange(newFilters, false);
+  };
+
   const clearFilters = () => {
     setFilters({});
 
@@ -197,34 +252,6 @@ const App = () => {
     // Check if the action is explicitly allowed
     return matches(action, allowedAction);
   }
-
-
-  const filterPermissionsFunction = (value, record) => {
-    var action = value.trim();
-
-    var roleDefinition = record.permissions[0];
-
-    var permission = allPermissions[action.toLowerCase()];
-    if (permission !== undefined) {
-
-      if (permission.isDataAction) {
-        return (isPermissionMatchForRoleSet(action, roleDefinition.dataActions))
-          &&
-          !(isPermissionMatchForRoleSet(action, roleDefinition.notDataActions));
-      }
-      else {
-        return (isPermissionMatchForRoleSet(action, roleDefinition.actions))
-          &&
-          !(isPermissionMatchForRoleSet(action, roleDefinition.notActions));
-
-      }
-
-    }
-    //console.error('action doesn\'t exist ' + action.toLowerCase());
-    // The action is allowed if it is allowed or a data operation is allowed,
-    // and it is not disallowed and a data operation is not disallowed
-
-  };
 
 
 
@@ -281,7 +308,6 @@ const App = () => {
       dataIndex: 'roleName',
       key: 'name',
       filterMultiple: true,
-      //filteredValue: filters.name || null,
       onFilter: (value, record) => record.roleName.toLowerCase().includes(value.trim().toLowerCase()),
     },
     {
@@ -301,12 +327,11 @@ const App = () => {
               <Option key={item.trim()}>{item}</Option>
             ))}
           </Select>
-          <Button onClick={clearFilters} className='reset-filter-button' type='text' icon={<RedoOutlined />}>Reset filters</Button>
         </div>
       ),
       onFilter: filterPermissionsFunction,
       filterMultiple: true,
-      render: permissions => (
+      render: (permissions, record) => (
         <div>
           {permissions.map((permission, permissionIndex) => (
             <div key={'permission-item' - permissionIndex}>
@@ -402,6 +427,42 @@ const App = () => {
         </div>
       ),
     },
+    {
+      title: () => (
+        <div>
+          Privileged role<br />
+          <Select
+            mode="multiple"
+            style={{ width: '10vw', maxWidth: '100px' }}
+            placeholder="Filter"
+            optionFilterProp="children"
+            onChange={handleFilterPrivilegedChange}
+            value={filters.privileged}
+          >
+            <Option key='false'>no</Option>
+            <Option key='true'>yes</Option>
+          </Select>
+          <Button onClick={clearFilters} className='reset-filter-button' type='text' icon={<RedoOutlined />}>Reset filters</Button>
+        </div>
+      ),
+      dataIndex: 'privileged',
+      key: 'privileged',
+      filterMultiple: true,
+      onFilter: filterPrivilegedFunction,
+      render: (permissions, record) => (
+        <div>
+          {filterPermissionsFunction('Microsoft.Authorization/roleAssignments/write', record) ? (
+            <div title="Microsoft recognizes this role as having privileged permissions.">
+              <WarningOutlined style={{ fontSize: '24px', color: '#faad14' }} />
+              <br></br>
+              yes
+            </div>
+          ) : (
+            'no'
+          )}
+        </div>
+      ),
+    }
   ];
 
   return (
