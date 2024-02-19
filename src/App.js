@@ -45,7 +45,17 @@ const App = () => {
 
 
         setAllData(fetchData);
-        setCurrentData(fetchData);
+        setCurrentData(fetchData.sort((a, b) => {
+          if (a.privileged === true && b.privileged === false) return 1;
+          if (a.privileged === false && b.privileged === true) return -1;
+
+          if (a.matchingPermissionsTotal == 0) {
+            return 1;
+          }
+
+          return a.matchingPermissionsTotal - b.matchingPermissionsTotal;
+
+        }));
 
         setAllIdOptions(fetchData.map(item => item.id).sort());
         setAllNameOptions(fetchData.map(item => item.roleName).sort());
@@ -181,7 +191,17 @@ const App = () => {
       )
     }
 
-    setCurrentData(currentData);
+    setCurrentData(currentData.sort((a, b) => {
+      if (a.privileged === true && b.privileged === false) return 1;
+      if (a.privileged === false && b.privileged === true) return -1;
+
+      if (a.matchingPermissionsTotal == 0) {
+        return 1;
+      }
+
+      return a.matchingPermissionsTotal - b.matchingPermissionsTotal;
+
+    }));
 
     // Update the URL with the new filter values
     if (dryRun !== true) {
@@ -245,7 +265,7 @@ const App = () => {
   const isPermissionMatchForRoleSet = (action, roleDefinitionActions) => {
     // Check if the action is explicitly allowed
     return roleDefinitionActions.some(pattern => matches(action, pattern));
-    
+
     //watch out, this function is duplicated in extend-roles-data.js
   }
 
@@ -431,39 +451,32 @@ const App = () => {
     {
       title: () => (
         <div>
-          Total permission<br />
+          Total permissions<br />
           <Select
             mode="multiple"
-            style={{ width: '10vw', maxWidth: '120px' }}
+            style={{ width: '12vw', maxWidth: '190px' }}
             placeholder="Filter"
             optionFilterProp="children"
             onChange={handleFilterPrivilegedChange}
             value={filters.privileged}
           >
-            <Option key='false'>standard</Option>
-            <Option key='true'>privileged</Option>
+            <Option key='false'>Standard role</Option>
+            <Option key='true'>Privileged role</Option>
           </Select>
         </div>
       ),
       dataIndex: 'privileged',
       key: 'privileged',
-      sorter: (a, b) => {
-        if(a.privileged === true && b.privileged === false) return 1;
-        if(a.privileged === false && b.privileged === true) return -1;
-
-        return a.matchingPermissionsTotal - b.matchingPermissionsTotal;
-
-      },
-      defaultSortOrder: 'ascend',
+      sorter: false,
       filterMultiple: true,
       onFilter: filterPrivilegedFunction,
       render: (permissions, record) => (
         <div>
           {filterPermissionsFunction('Microsoft.Authorization/roleAssignments/write', record) ? (
             <div title="Microsoft recognizes this role as having privileged permissions.">
-              <WarningOutlined style={{ fontSize: '24px', color: '#faad14' }} />
+              <WarningOutlined style={{ fontSize: '24px', color: '#faad14', marginLeft: '30px' }} />
               <br />
-              Privileged role <br />
+              <strong>Privileged role</strong> <br />
               <p>
                 <small>{record.matchingPermissionsTotal} permissions total</small>
               </p>
