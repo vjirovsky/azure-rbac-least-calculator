@@ -63,7 +63,12 @@ jobs:
           inlineScript: |
               chmod +x $GITHUB_WORKSPACE/generate-json.sh
               $GITHUB_WORKSPACE/generate-json.sh
-  
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          run: ${{ steps.detect-package-manager.outputs.runner }} node extend-roles-data.js
+
   # Deployment job
   deploy:
     environment:
