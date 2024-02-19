@@ -39,7 +39,7 @@ const App = () => {
 
   useEffect(() => {
 
-    fetch('/azure-rbac-least-calculator/roles.json')
+    fetch('/azure-rbac-least-calculator/roles-extended.json')
       .then(response => response.json())
       .then(fetchData => {
 
@@ -106,13 +106,12 @@ const App = () => {
       }
 
     }
-    //console.error('action doesn\'t exist ' + action.toLowerCase());
-    // The action is allowed if it is allowed or a data operation is allowed,
-    // and it is not disallowed and a data operation is not disallowed
+
+    //watch out, this function is duplicated in extend-roles-data.js
 
   };
 
-  
+
   const filterPrivilegedFunction = (value, record) => {
     var privilegedRequested = (value.trim() === 'true');
 
@@ -173,7 +172,7 @@ const App = () => {
 
       currentData = currentData.filter(
         record => privilegedFilters.some(
-          privilegedRequested => filterPermissionsFunction('Microsoft.Authorization/roleAssignments/write', record) == privilegedRequested
+          privilegedRequested => filterPermissionsFunction('Microsoft.Authorization/roleAssignments/write', record) === privilegedRequested
         )
       );
 
@@ -203,8 +202,6 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search, allData, allPermissions, allIdOptions, allNameOptions, allPermissionsOptions]);
   //, allData, allPermissions, allIdOptions, allNameOptions, allPermissionsOptions, handleChange]);
-
-
 
   const handleFilterIdChange = (value) => {
     const newFilters = { ...filters, id: value };
@@ -240,12 +237,16 @@ const App = () => {
   const matches = (action, pattern) => {
     const regex = new RegExp('^' + pattern.split('*').join('.*') + '$');
     return regex.test(action);
+
+    //watch out, this function is duplicated in extend-roles-data.js
   };
 
 
   const isPermissionMatchForRoleSet = (action, roleDefinitionActions) => {
     // Check if the action is explicitly allowed
     return roleDefinitionActions.some(pattern => matches(action, pattern));
+    
+    //watch out, this function is duplicated in extend-roles-data.js
   }
 
   const isPermissionMatch = (action, allowedAction) => {
@@ -430,23 +431,30 @@ const App = () => {
     {
       title: () => (
         <div>
-          Privileged role<br />
+          Total permission<br />
           <Select
             mode="multiple"
-            style={{ width: '10vw', maxWidth: '100px' }}
+            style={{ width: '10vw', maxWidth: '120px' }}
             placeholder="Filter"
             optionFilterProp="children"
             onChange={handleFilterPrivilegedChange}
             value={filters.privileged}
           >
-            <Option key='false'>no</Option>
-            <Option key='true'>yes</Option>
+            <Option key='false'>standard</Option>
+            <Option key='true'>privileged</Option>
           </Select>
-          <Button onClick={clearFilters} className='reset-filter-button' type='text' icon={<RedoOutlined />}>Reset filters</Button>
         </div>
       ),
       dataIndex: 'privileged',
       key: 'privileged',
+      sorter: (a, b) => {
+        if(a.privileged === true && b.privileged === false) return 1;
+        if(a.privileged === false && b.privileged === true) return -1;
+
+        return a.matchingPermissionsTotal - b.matchingPermissionsTotal;
+
+      },
+      defaultSortOrder: 'ascend',
       filterMultiple: true,
       onFilter: filterPrivilegedFunction,
       render: (permissions, record) => (
@@ -454,15 +462,35 @@ const App = () => {
           {filterPermissionsFunction('Microsoft.Authorization/roleAssignments/write', record) ? (
             <div title="Microsoft recognizes this role as having privileged permissions.">
               <WarningOutlined style={{ fontSize: '24px', color: '#faad14' }} />
-              <br></br>
-              yes
+              <br />
+              Privileged role <br />
+              <p>
+                <small>{record.matchingPermissionsTotal} permissions total</small>
+              </p>
             </div>
           ) : (
-            'no'
+            <>
+              no
+              < br />
+              <p>
+                <small>{record.matchingPermissionsTotal} permissions total</small>
+              </p>
+            </>
           )}
         </div>
       ),
-    }
+    },
+    {
+      title: '',
+      key: 'actions',
+      title: () => (
+        <Button onClick={clearFilters} className='reset-filter-button' type='text' icon={<RedoOutlined />}>Reset filters</Button>
+      ),
+      // Optional: Adjust the column width as needed
+      width: 150,
+      // Disable sorting for this "fake" column
+      sorter: false,
+    },
   ];
 
   return (
@@ -479,7 +507,7 @@ const App = () => {
             Just provide the desired permissions and the tool will show you the roles that provide the least privilege for the given set of actions, with explanation which permission (in filter) matches coresponding allowed permission in role definition.
           </p>
           <p>
-            Please take in mind, some permissions are not directly mapped to the built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" target="_blank" rel="noreferrer">create a new Custom role</a>.
+            Please keep in mind that the sorting of the table below is based on the count of permissions. It does not evaluate the potential danger of each permission (just basic standard vs. privileged role). Additionally, note that some permissions are not directly mapped to built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" target="_blank" rel="noreferrer">create a new Custom role</a>.
           </p>
 
 

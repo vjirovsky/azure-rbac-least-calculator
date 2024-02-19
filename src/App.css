@@ -92,3 +92,7 @@ tr.table-row-dark{
 tr:hover td{
   background: rgb(252, 255, 204)!important;
 }
+
+td.ant-table-column-sort{
+  background-color: transparent !important;
+}
