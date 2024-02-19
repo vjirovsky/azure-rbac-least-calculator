@@ -470,8 +470,7 @@ const App = () => {
             </div>
           ) : (
             <>
-              no
-              < br />
+              Standard role < br />
               <p>
                 <small>{record.matchingPermissionsTotal} permissions total</small>
               </p>
