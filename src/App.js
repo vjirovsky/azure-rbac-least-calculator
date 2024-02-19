@@ -482,7 +482,7 @@ const App = () => {
     },
     {
       title: '',
-      key: 'actions',
+      key: 'filter-reset',
       title: () => (
         <Button onClick={clearFilters} className='reset-filter-button' type='text' icon={<RedoOutlined />}>Reset filters</Button>
       ),
