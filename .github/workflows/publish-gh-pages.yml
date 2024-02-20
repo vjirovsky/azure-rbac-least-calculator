@@ -52,10 +52,6 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build project
         run: ${{ steps.detect-package-manager.outputs.runner }} npm run build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: ./build
       - name: Get current Azure roles and permissions definitions
         uses: azure/CLI@v1
         with:
@@ -68,6 +64,10 @@ jobs:
         with:
           node-version: "20"
           run: ${{ steps.detect-package-manager.outputs.runner }} node extend-roles-data.js
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./build
 
   # Deployment job
   deploy:

@@ -1,11 +1,11 @@
 const fs = require('fs').promises; // Use the Promise-based version of the fs module
 
-const inputFile = 'public/roles.json';
+const inputFile = 'build/roles.json';
 
 // Output filename
-const outputFile = 'public/roles-extended.json';
+const outputFile = 'build/roles-extended.json';
 
-const permissionsFile = 'public/permissions.json';
+const permissionsFile = 'build/permissions.json';
 
 // Function to process the JSON file
 async function processJsonFile() {
