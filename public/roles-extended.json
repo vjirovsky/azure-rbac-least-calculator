@@ -13,7 +13,7 @@
           "notDataActions": []
         }
       ],
-      "roleName": "AcrPush",
+      "roleName": "TEST TEST TEST",
       "type": "Microsoft.Authorization/roleDefinitions",
       "matchingPermissionsTotal": 2
     },
@@ -51,7 +51,7 @@
           "notDataActions": []
         }
       ],
-      "roleName": "AcrPull",
+      "roleName": "TEST TEST TEST",
       "type": "Microsoft.Authorization/roleDefinitions",
       "matchingPermissionsTotal": 1
     },
