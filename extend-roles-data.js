@@ -38,18 +38,20 @@ async function processJsonFile() {
 
       return obj;
     }, {});
-    
+
     // Check if records is an array
     if (!Array.isArray(roles)) {
       console.error('The file content is not an array.');
       return;
     }
 
-    const processedRoles = roles.map((role, index) => {
+    var processedRoles = roles.map((role, index) => {
 
       const calculationResult = getTotalTruePermissions(role, allPermissions);
       return { ...role, matchingPermissionsTotal: calculationResult };
     });
+
+    processedRoles = { roles: processedRoles, lastUpdated: new Date().toISOString() };
 
     // Save the processed records to the output file
     await fs.writeFile(outputFile, JSON.stringify(processedRoles, null, 2), 'utf8');
@@ -71,11 +73,11 @@ const getTotalTruePermissions = (record, allPermissions) => {
 }
 
 const filterPermissionsFunction = (value, record, allPermissions) => {
-  
+
   var action = value.trim();
 
   var roleDefinition = record.permissions[0];
-  console.log('Testing '+ value +' for record ' + roleDefinition.name);
+  //console.log('Testing ' + value + ' for record ' + roleDefinition.name);
   var permission = allPermissions[action.toLowerCase()];
   if (permission !== undefined) {
 

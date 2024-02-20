@@ -1,8 +1,24 @@
-# Getting Started with Create React App
+# Azure RBAC Least Privilege Calculator
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This tool assists users in calculating the minimal Azure RBAC built-in role required for specific permissions. It daily retrieves from the Azure REST APIs the list of available RBAC built-in roles and possible permissions, enabling users to browse through the UI and determine the best-suited role.
 
-## Available Scripts
+Additionally, note that some permissions are not directly mapped to built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to create a new Azure Custom role.
+
+## Usage
+
+Just visit the URL [https://vjirovsky.github.io/azure-rbac-least-calculator/](https://vjirovsky.github.io/azure-rbac-least-calculator/) and select the permissions you need to assign. The tool will automatically filter out roles that either lack any of the requested permissions or exclude any specific permissions you've selected. Also the tool highlights which permissions in a role definition matches a requested permission.
+
+![Azure RBAC Least Privilege Calculator screenshot](./screenshot.png)
+
+
+Please be aware that the sorting of the table below is determined by the number of permissions. It does not assess the potential risk associated with each permission, only distinguishing between basic standard and privileged roles..
+
+
+## Disclaimer
+
+Please note that this is a personal project, it is provided 'as is' with no warranties and confer no rights and is not affiliated with Microsoft Corporation.
+
+## Building
 
 In the project directory, you can run:
 
@@ -13,58 +29,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

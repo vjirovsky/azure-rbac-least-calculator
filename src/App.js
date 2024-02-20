@@ -17,6 +17,7 @@ const { Option } = Select;
 
 const App = () => {
   const [allData, setAllData] = useState([]);
+  const [lastUpdated, setLastUpdated] = useState([]);
   const [allPermissions, setAllPermissions] = useState([]);
   const [currentData, setCurrentData] = useState([]);
   const [filters, setFilters] = useState({});
@@ -43,7 +44,8 @@ const App = () => {
       .then(response => response.json())
       .then(fetchData => {
 
-
+        setLastUpdated(fetchData.lastUpdated);
+        fetchData = fetchData.roles;
         setAllData(fetchData);
         setCurrentData(fetchData.sort((a, b) => {
           if (a.privileged === true && b.privileged === false) return 1;
@@ -518,7 +520,7 @@ const App = () => {
             Just provide the desired permissions and the tool will show you the roles that provide the least privilege for the given set of actions, with explanation which permission (in filter) matches coresponding allowed permission in role definition.
           </p>
           <p>
-            Please keep in mind that the sorting of the table below is based on the count of permissions. It does not evaluate the potential danger of each permission (just basic standard vs. privileged role). Additionally, note that some permissions are not directly mapped to built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" target="_blank" rel="noreferrer">create a new Custom role</a>.
+            Please be aware that the sorting of the table below is determined by the number of permissions. It does not assess the potential risk associated with each permission, only distinguishing between basic standard and privileged roles. Additionally, note that some permissions are not directly mapped to built-in roles, and some permissions are not allowed in the built-in roles - in such scenario proceed to <a href="https://learn.microsoft.com/en-us/azure/role-based-access-control/custom-roles" target="_blank" rel="noreferrer">create a new Custom role</a>.
           </p>
 
 
@@ -529,6 +531,9 @@ const App = () => {
       <Footer>
         <p>
           &copy; 2024 <a href="https://www.vjirovsky.cz">Vaclav Jirovsky</a> | <a href="https://blog.vjirovsky.cz">Blog</a>  | <a href="https://github.com/vjirovsky/azure-rbac-least-calculator">GitHub project of the tool</a> | <a href="https://github.com/vjirovsky/azure-rbac-least-calculator/issues">Report an issue</a>
+        </p>
+        <p>
+          Last updated: {lastUpdated}
         </p>
         <p>
           Please note that this is a personal project, it is provided 'as is' with no warranties and confer no rights and is not affiliated with Microsoft Corporation.
