@@ -17,11 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_RBAC_READ_CREDENTIALS }}
-        
+       
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -52,13 +48,17 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
       - name: Build project
         run: ${{ steps.detect-package-manager.outputs.runner }} npm run build
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_RBAC_READ_CREDENTIALS }}
       - name: Get current Azure roles and permissions definitions
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.30.0
+          azcliversion: latest
           inlineScript: |
-              chmod +x $GITHUB_WORKSPACE/generate-json.sh
-              $GITHUB_WORKSPACE/generate-json.sh
+              pwd;
+              sh $GITHUB_WORKSPACE/generate-json.sh
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
