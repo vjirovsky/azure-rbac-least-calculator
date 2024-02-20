@@ -10,6 +10,11 @@ Just visit the URL [https://vjirovsky.github.io/azure-rbac-least-calculator/](ht
 
 ![Azure RBAC Least Privilege Calculator screenshot](./screenshot.png)
 
+The tool automatically generates a deeplink with the current filters applied, so you can share it with the selected values.
+
+E.g.:
+https://vjirovsky.github.io/azure-rbac-least-calculator/?permissions[]=Microsoft.Support%2Fservices%2Fread&permissions[]=Microsoft.ApiManagement%2Fservice%2Fwrite&permissions[]=Microsoft.Authorization%2FpolicyDefinitions%2Fread&permissions[]=Microsoft.ApiManagement%2Fservice%2Fusers%2Fkeys%2Fread
+
 
 Please be aware that the sorting of the table below is determined by the number of permissions. It does not assess the potential risk associated with each permission, only distinguishing between basic standard and privileged roles..
 
