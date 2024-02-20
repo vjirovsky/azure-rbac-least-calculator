@@ -59,11 +59,12 @@ jobs:
           inlineScript: |
               pwd;
               sh $GITHUB_WORKSPACE/generate-json.sh
-      - name: Setup Node
+      - name: Enhance roles.json
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
-          run: node $GITHUB_WORKSPACE/extend-roles-data.js
+          node-version: 20
+          cache: ${{ steps.detect-package-manager.outputs.manager }}
+      - run: npm run extend-roles-json
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
